@@ -5,16 +5,13 @@
     <!-- Header -->
     <Header />
 
-    <!-- Bannière d'accueil -->
-    <div
-      class="bg-fixed bg-cover bg-center h-screen flex items-center justify-center"
-      :style="{ backgroundImage: 'url(https://www.mgvillas.fr/objetos/temp/source/mgvillas/mgvillas-propiedades_5f57a70f58407-source.jpg)' }"
-    >
+    <!-- Section hero -->
+    <div ref="heroSection" class="hero-section h-screen flex items-center bg-fixed bg-cover bg-center flex justify-center">
       <div class="bg-black bg-opacity-50 text-center p-10 rounded-xl mx-3">
-        <h1 class="text-4xl font-bold text-white mb-4">Bienvenue sur notre site immobilier</h1>
+        <h1 class="text-4xl font-bold text-white mb-4">Bienvenue à HPR COOP SARL</h1>
         <p class="text-lg text-white mb-6">Trouvez votre maison de rêve parmi nos offres exclusives</p>
         <div class="md:flex justify-center">
-          <router-link to="/properties" class="bg-bleu text-white py-1 px-6 rounded-2xl shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+          <router-link to="/properties" class="bg-bleu text-white py-2 px-6 rounded-2xl shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             Voir plus
           </router-link>
         </div>
@@ -26,8 +23,7 @@
       <h2 class="text-3xl font-semibold text-center mb-8">Propriétés en Vedette</h2>
       <div class="flex flex-wrap gap-6 justify-center">
         <!-- Property 1 -->
-        <div class="relative bg-cover bg-center h-80 w-full sm:w-80 md:w-96 lg:w-1/4 rounded-md hover:-translate-x-1 hover:-translate-y-1 duration-150" 
-             :style="{ backgroundImage: 'url(https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg)' }">
+        <div class="relative bg-cover bg-center h-80 w-full sm:w-80 md:w-96 lg:w-1/4 rounded-md hover:-translate-x-1 hover:-translate-y-1 duration-150" :style="{ backgroundImage: 'url(https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg)' }">
           <div class="absolute bottom-4 left-4 bg-black bg-opacity-60 p-4 rounded-lg text-white">
             <h2 class="text-lg font-bold">Maison Moderne à Paris</h2>
             <p>Prix : 1 200 000 €</p>
@@ -84,7 +80,7 @@
               <h3 class="text-xl font-bold mb-2">Achat de Propriétés</h3>
               <p class="hidden md:block">Nous vous accompagnons dans l'achat de propriétés de rêve adaptées à vos besoins et à votre budget. Que vous cherchiez une maison, un appartement, ou une villa, notre équipe d'experts est là pour vous guider tout au long du processus, de la recherche à l'acquisition finale.</p>
               <div class="py-2 flex justify-center">
-                <router-link to="/services/achat" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <router-link to="/properties" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                   En savoir plus
                 </router-link>
               </div>
@@ -97,7 +93,7 @@
               <h3 class="text-xl font-bold mb-2">Vente de Propriétés</h3>
               <p class="hidden md:block">Vous souhaitez vendre votre propriété ? Notre équipe d'experts en immobilier met à votre disposition son savoir-faire pour estimer, promouvoir et vendre votre bien dans les meilleures conditions. Nous utilisons des stratégies de marketing efficaces pour attirer des acheteurs potentiels et garantir une vente rapide et au meilleur prix.</p>
               <div class="py-2 flex justify-center">
-                <router-link to="/services/vente" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <router-link to="/formvente" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                   En savoir plus
                 </router-link>
               </div>
@@ -112,7 +108,7 @@
               <h3 class="text-xl font-bold mb-2">Gestion Locative</h3>
               <p class="hidden md:block">Notre service de gestion locative prend en charge tous les aspects de la location de votre bien, de la recherche de locataires à la gestion des contrats et des paiements. Nous nous assurons que votre propriété est bien entretenue et que vous recevez des revenus locatifs réguliers et sans tracas.</p>
               <div class="py-2 flex justify-center">
-                <router-link to="/services/gestion-locative" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <router-link to="/formlocation" class="bg-bleu text-white py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700 hover:shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                 En savoir plus
                 </router-link>
               </div>
@@ -146,6 +142,7 @@
 <script>
 import Header from '../Helper/Header.vue';
 import Footer from '../Helper/Footer.vue';
+import heroImage from '../../assets/hero.png';
 
 export default {
   components: {
@@ -186,6 +183,24 @@ export default {
 </script>
 
 <style scoped>
+
+.hero-section {
+  background-image: url('@/assets/hero.png'); /* Assurez-vous que le chemin est correct */
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-section img {
+  display: none; /* Cache l'image si vous utilisez background-image */
+}
+
+.hero-section {
+  background-color: #d4f068c5; /* Remplace l'image de fond par une couleur */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .carousel-container {
   position: relative;
 }

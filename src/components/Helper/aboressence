@@ -1,0 +1,42 @@
+IMMOBILIER/
+│
+├── node_modules/        # Modules npm installés
+├── public/              # Fichiers publics (index.html, favicon.ico, etc.)
+│   └── vite.svg
+│
+├── src/                 # Code source du projet
+│   ├── assets/          # Fichiers statiques (images, styles, etc.)
+│   ├── components/      # Composants Vue réutilisables
+│   │   ├── AboutMe/
+│   │   │   └── APropos.vue
+│   │   │
+│   │   ├── Connexion/
+│   │   │   └── Loginpage.vue
+│   │   │
+│   │   ├── Contact/
+│   │   │   └── Contact.vue
+│   │   │
+│   │   ├── Helper/
+│   │   │   ├── Footer.vue
+│   │   │   └── Heaser.vue
+│   │   │
+│   │   ├── Home/
+│   │   │   └── Home.vue
+│   │   │
+│   │   └── Propriété/
+│   │       └── Articles.vue
+│   │
+│   ├── views/           # Vues (pages) du projet
+│   ├── router/          # Configuration du routeur Vue
+│   │   └── index.js
+│   ├── store/           # État global (Vuex)
+│   ├── App.vue          # Composant racine
+│   ├── main.js          # Point d'entrée JavaScript
+│   └── style.css
+├── .gitignore           # Fichiers et dossiers à ignorer par Git
+├── index.html
+├── package-lock.json
+├── package.json         # Dépendances, scripts, etc.
+├── README.md            # Documentation du projet
+├── tailwind.config.js
+└── vue.config.js        # Configuration Vue.js (si nécessaire)

@@ -6,6 +6,9 @@ import Contact from '../components/Contact/Contact.vue';
 import Propriété from '../components/Propriété/Articles.vue';
 import APropos from '../components/AboutMe/APropos.vue';
 import Loginpage from '../components/Connexion/Loginpage.vue';
+import Signinpage from '../components/Connexion/Signinpage.vue';
+import FormVente from '../components/form/formvente.vue';
+import FormLocation from '../components/form/formlocation.vue';
 
 
 const routes = [
@@ -33,6 +36,21 @@ const routes = [
     path: '/login',
     name: 'Loginpage',
     component: Loginpage
+  },
+  {
+    path: '/signin',
+    name: 'Signinpage',
+    component: Signinpage
+  },
+  {
+    path: '/formvente',
+    name: 'FormVente',
+    component: FormVente
+  },
+  {
+    path: '/formlocation',
+    name: 'FormLocation',
+    component: FormLocation
   }
 ];
 
