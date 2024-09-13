@@ -1,157 +1,117 @@
 <template>
-  <header 
-    class="fixed w-full top-0 left-0 z-50 bg-white text-black shadow-lg transition-colors duration-500"> 
-
-    <div class="container mx-auto flex items-center justify-between py-1 px-8">
-      <!-- Logo -->
-      <div class="text-2xl font-bold flex items-center">
-        <router-link to="/" class="hover:text-gray-300 flex items-center">
-          <img :src="currentLogo" alt="Logo" class="h-12 w-auto rounded-full mr-2"/>
+  <header class="shadow-2xl fixed w-full top-5 rounded-full left-0 z-50 bg-white">
+    <div class="container mx-auto flex items-center justify-between m-2">
+      <!-- Affichage du logo sur tous les écrans avec ajustements -->
+      <div class="text-2xl font-bold flex items-center gap-2">
+        <!-- Logo pour desktop -->
+        <router-link to="/" class="">
+          <img :src="currentLogo" alt="Logo" class="rounded-full" width="50" height="40" />
         </router-link>
       </div>
 
-      <!-- Menu de navigation -->
-      <nav class="hidden md:flex">
-        <ul class="flex space-x-6">
+       <!-- Menu de navigation (centré horizontalement et verticalement) -->
+       <nav class="hidden md:flex flex justify-center items-center">
+        <ul class="flex justify-center items-center space-x-6">
           <li v-for="(link, index) in links" :key="index">
             <router-link 
               :to="link.to" 
-              class="block lg:inline-block m-5 nav-link" 
-              :class="{ 'active-link': isActive(link.to) }">
+              class="block lg:inline-block nav-link" 
+              :class="{ 'active-link': isActive(link.to) }"
+              @click="link.clickHandler">
               {{ link.name }}
             </router-link>
           </li>
         </ul>
       </nav>
 
+
       <!-- Menu utilisateur ou connexion -->
-      <div class="hidden md:flex items-center relative">
-        <div v-if="userLoggedIn">
+      <div class="hidden md:flex items-center relative" v-if="userLoggedIn">
+        <div>
           <button @click="toggleDropdown" class="flex items-center focus:outline-none">
             <span class="mr-2 text-black">
               {{ userName }}
             </span>
-            <svg 
-              class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
 
           <!-- Menu déroulant pour l'utilisateur -->
           <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
-            <router-link 
-              to="/profile" 
-              class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-              Profil
-            </router-link>
-            <router-link 
-              to="/settings" 
-              class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-              Paramètres
-            </router-link>
-            <button 
-              @click="logout" 
-              class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-              Déconnexion
-            </button>
+            <router-link to="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
+            <router-link to="/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Paramètres</router-link>
+            <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Déconnexion</button>
           </div>
         </div>
-        <router-link 
-          v-if="!userLoggedIn"
-          to="/login" 
-          class="bg-[#96BB00] text-black py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
-          Connexion
+      </div>
+
+      <!-- Bouton de connexion pour grand écran -->
+      <div class="hidden lg:flex" v-if="!userLoggedIn">
+        <router-link to="/login" class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
+          Se Connecter <font-awesome-icon :icon="['fas', 'user']" />
         </router-link>
       </div>
 
-      <!-- Menu hamburger pour petits écrans -->
-      <button @click="toggleMenu" class="md:hidden text-black focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" style="color: black;"/>
+
+      <!-- Bouton menu hamburger pour mobile -->
+      <button @click="toggleMenu" class="md:hidden flex items-center text-gray-600 hover:text-gray-800">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" style="color: black;"></path>
         </svg>
       </button>
     </div>
 
-    <!-- Off-canvas menu -->
-    <transition name="slide">
-      <div v-if="isMenuOpen" class="fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-end">
-        <div @click="toggleMenu" class="absolute inset-0"></div>
+    <!-- Menu mobile -->
+    <div v-show="isMenuOpen" class="md:hidden bg-white shadow-md mt-2 transition-all duration-300 ease-in-out">
+      <nav class="mt-2 p-6">
+        <router-link to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Accueil</router-link>
+        <router-link to="/properties" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Propriétés</router-link>
+        <router-link to="/about" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">À propos</router-link>
+        <router-link to="/contact" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</router-link>
 
-        <div class="bg-white w-64 h-full shadow-lg relative z-50">
-          <button @click="toggleMenu" class="absolute top-4 right-4 text-gray-500 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> 
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+        <!-- Boutons de connexion/déconnexion pour mobile -->
+        <router-link 
+          v-if="!userLoggedIn"
+          to="/login" 
+          class="flex justify-center block text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
+          Connexion
+        </router-link>
+        <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
+        <button 
+          v-if="userLoggedIn"
+          @click="logout" 
+          class="flex justify-center block w-full text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
+          Déconnexion
+        </button>
+      </nav>
+    </div>
 
-          <h2 class="text-center font-bold text-lg my-4 text-black">Menu</h2>
-
-          <nav class="mt-2 p-6">
-            <ul class="space-y-4">
-              <li>
-                <router-link @click="toggleMenu" to="/" class="flex justify-center block text-lg text-gray-800 hover:text-gray-600">Accueil</router-link>
-              </li>
-              <li>
-                <router-link @click="toggleMenu" to="/properties" class="flex justify-center block text-lg text-gray-800 hover:text-gray-600">Propriétés</router-link>
-              </li>
-              <li>
-                <router-link @click="toggleMenu" to="/about" class="flex justify-center block text-lg text-gray-800 hover:text-gray-600">À propos</router-link>
-              </li>
-              <li>
-                <router-link @click="toggleMenu" to="/contact" class="flex justify-center block text-lg text-gray-800 hover:text-gray-600">Contact</router-link>
-              </li>
-            </ul>
-
-            <router-link 
-              v-if="!userLoggedIn"
-              to="/login" 
-              class="flex justify-center block text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
-              Connexion
-            </router-link>
-            <router-link 
-              v-if="userLoggedIn"
-              to="/profile" 
-              class="flex justify-center block text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
-              Profil
-            </router-link>
-            <button 
-              v-if="userLoggedIn"
-              @click="logout" 
-              class="flex justify-center block w-full text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
-              Déconnexion
-            </button>
-          </nav>
-        </div>
-      </div>
-    </transition>
   </header>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import logo1 from '../../assets/logo1.png'; // Logo par défaut
-import logo2 from '../../assets/logo2.png'; // Logo après le scroll
 
+// États réactifs
 const isMenuOpen = ref(false);
-const userLoggedIn = ref(false);
-const userName = ref('Jean Dupont');
 const dropdownOpen = ref(false);
 const currentLogo = ref(logo1);
-const isScrolled = ref(false);
-const isHome = ref(false);
-const heroSection = ref(null);
 
+// Utilisateur connecté
+const userName = ref('');
 
 // Liens de navigation
 const links = [
-  { name: 'Accueil', to: '/' },
-  { name: 'Propriétés', to: '/properties' },
-  { name: 'À propos', to: '/about' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'Accueil', to: '/', clickHandler: closeMenu },
+  { name: 'Propriétés', to: '/properties', clickHandler: closeMenu },
+  { name: 'À propos', to: '/about', clickHandler: closeMenu },
+  { name: 'Contact', to: '/contact', clickHandler: closeMenu },
 ];
 
-// Fonction pour gérer le menu
+// Gérer le menu mobile
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
 }
@@ -160,36 +120,78 @@ function toggleDropdown() {
   dropdownOpen.value = !dropdownOpen.value;
 }
 
+// Fonction pour vérifier si l'utilisateur est connecté (ex: présence d'un token dans le local storage)
+const userLoggedIn = computed(() => {
+  return localStorage.getItem('authToken') !== null;
+});
+
+// Déconnexion
 function logout() {
-  userLoggedIn.value = false;
+  localStorage.removeItem('authToken');  // Supprimer le token ou autre identifiant de connexion
+  dropdownOpen.value = false; // Fermer le menu déroulant
+  // Optionnel : Redirection vers la page de connexion après déconnexion
 }
 
-// Changement du logo en fonction du scroll
-const handleScroll = () => {
-  if (window.scrollY > 700) {
-    currentLogo.value = logo2;
-  } else {
-    currentLogo.value = logo1;
-  }
-};
-
-// Ajouter et retirer l'écouteur d'événement pour le scroll
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
-
+// Route active
 const route = useRoute();
-
-function isActive(route) {
-  return route.path === route;
+function isActive(linkRoute) {
+  return route.path === linkRoute;
 }
+
+function closeMenu() {
+  isMenuOpen.value = false;
+}
+
+// Chargement des informations utilisateur si connecté
+onMounted(() => {
+  if (userLoggedIn.value) {
+    // Exemple : Charger le nom de l'utilisateur à partir d'une API ou du local storage
+    userName.value = localStorage.getItem('userName') || 'Jean Dupont';
+  }
+});
 </script>
 
+
 <style scoped>
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+
+  nav ul {
+    display: block;
+  }
+
+  .nav-link {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+}
+
+
+header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+button {
+  transition: color 0.3s ease-out;
+}
+
 body {
   margin-top: 70px;
 }
@@ -225,5 +227,4 @@ body {
 .nav-link {
   transition: color 0.3s ease-out;
 }
-
 </style>
