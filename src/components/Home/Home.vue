@@ -160,7 +160,7 @@
           <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8">Ce que disent nos clients</h2>
 
           <!-- Carrousel Wrapper -->
-          <div class="carousel flex transition-transform duration-300 " :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+          <div class="carousel flex transition-transform duration-300 grid" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
             <div v-for="(testimonial, index) in testimonials" :key="index" class="carousel-slide min-w-full flex-shrink-0 px-4 md:px-20 text-center">
               <!-- Photo du client -->
               <img :src="testimonial.image" alt="Photo de {{ testimonial.name }}" class="mx-auto mb-4 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover">
@@ -270,23 +270,28 @@ export default {
   background-attachment: fixed;
 }
 .carousel-container {
+  max-width: 100%;
+  overflow-x: hidden;
   position: relative;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 1rem; 
 }
-
 .carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  flex-wrap: nowrap;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
-
 .carousel-slide {
   min-width: 100%;
-  text-align: center;
-  padding: 2rem;
+  scroll-snap-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .carousel-slide p {
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 1.75rem; 
   color: #555;
 }
 

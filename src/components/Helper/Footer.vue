@@ -19,9 +19,11 @@
         <div class="flex flex-col space-y-4">
           <h4 class="text-lg font-semibold">Nos Services</h4>
           <a href="#" class="text-white hover:text-gray-400">Achat de Propriétés</a>
-          <a href="#" class="text-white hover:text-gray-400">Vente de Propriétés</a>
-          <a href="#" class="text-white hover:text-gray-400">Gestion Locative</a>
-          <a href="#" class="text-white hover:text-gray-400">Estimations Gratuites</a>
+          <a href="/formvente" class="text-white hover:text-gray-400">Vente de Propriétés</a>
+          <a href="/formlocation" class="text-white hover:text-gray-400">Gestion Locative</a>
+          <a href="#" class="text-white hover:text-gray-400">Construstion / Rénovation</a>
+          <a href="#" class="text-white hover:text-gray-400">Suivi / Evaluation des chantiers</a>
+          <a href="#" class="text-white hover:text-gray-400">Service d'entretien</a>
         </div>
 
         <!-- Coordonnées -->

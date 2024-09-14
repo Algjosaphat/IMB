@@ -31,7 +31,7 @@
                 </ul>
               </div>
               <router-link :to="{ path: '/contact' }">
-                <button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
                   Contactez-nous
                 </button>
               </router-link>

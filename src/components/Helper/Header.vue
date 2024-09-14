@@ -40,7 +40,7 @@
           <!-- Menu déroulant pour l'utilisateur -->
           <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
             <router-link to="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
-            <router-link to="/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Paramètres</router-link>
+            <router-link to="/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</router-link>
             <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Déconnexion</button>
           </div>
         </div>
@@ -74,14 +74,14 @@
         <router-link 
           v-if="!userLoggedIn"
           to="/login" 
-          class="flex justify-center block text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
+          class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
           Connexion
         </router-link>
         <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
         <button 
           v-if="userLoggedIn"
           @click="logout" 
-          class="flex justify-center block w-full text-center bg-[#96BB00] text-black m-2 py-2 px-4 rounded-lg shadow-md hover:bg-[#15763A] hover:text-white transition-transform transform hover:scale-105">
+          class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
           Déconnexion
         </button>
       </nav>
@@ -93,6 +93,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+// import { useRoute, useRouter } from 'vue-router'; // Importer useRouter pour redirection
 import logo1 from '../../assets/logo1.png'; // Logo par défaut
 
 // États réactifs
@@ -124,12 +125,19 @@ function toggleDropdown() {
 const userLoggedIn = computed(() => {
   return localStorage.getItem('authToken') !== null;
 });
+function checkUserLoggedIn() {
+  userLoggedIn.value = localStorage.getItem('authToken') !== null;
+}
 
 // Déconnexion
 function logout() {
   localStorage.removeItem('authToken');  // Supprimer le token ou autre identifiant de connexion
-  dropdownOpen.value = false; // Fermer le menu déroulant
   // Optionnel : Redirection vers la page de connexion après déconnexion
+  localStorage.removeItem('userName');   // Supprimer le nom d'utilisateur
+  dropdownOpen.value = false; // Fermer le menu déroulant
+  checkUserLoggedIn();        // Mettre à jour l'état de connexion
+  router.push('/');           // Optionnel : Rediriger vers la page d'accueil
+  window.location.reload();  // Actualiser la page
 }
 
 // Route active
@@ -139,9 +147,9 @@ function isActive(linkRoute) {
 }
 
 function closeMenu() {
-  isMenuOpen.value = false;
+  isMenuOpen.value = false;  // Fermer le menu
+  // window.location.reload();  // Actualiser la page
 }
-
 // Chargement des informations utilisateur si connecté
 onMounted(() => {
   if (userLoggedIn.value) {
