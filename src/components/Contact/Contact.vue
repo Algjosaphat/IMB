@@ -34,9 +34,9 @@
         <!-- Informations de Contact -->
         <div class="md:w-1/2 mt-8 md:mt-0 space-y-4">
           <h2 class="text-2xl font-semibold mb-4">Informations de Contact</h2>
-          <p class="mb-2">123 Rue de l'Immobilier, Paris, France</p>
-          <p class="mb-2">Téléphone: +33 1 23 45 67 89</p>
-          <p class="mb-4">Email: contact@votreagence.com</p>
+          <p class="mb-2">Godomey Salamey sixième boutique la von du bar sous-solv en venant du CEG Godomey</p>
+          <p class="mb-2">Téléphone: (+229) 98 88 98 60 / 66 23 73 68</p>
+          <p class="mb-4">Email: </p>
           <div class="h-72">
             <iframe
               class="w-full h-full rounded-lg shadow-md"

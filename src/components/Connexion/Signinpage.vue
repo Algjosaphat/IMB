@@ -40,8 +40,7 @@
             <button 
               type="submit" 
               class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 w-full transition duration-150 ease-in-out"
-              :disabled="!name || !email || !password || !confirmPassword"
-            >
+              :disabled="!name || !email || !password || !confirmPassword">
               S'inscrire
             </button>
           </form>

@@ -9,6 +9,7 @@ import Loginpage from '../components/Connexion/Loginpage.vue';
 import Signinpage from '../components/Connexion/Signinpage.vue';
 import FormVente from '../components/form/formvente.vue';
 import FormLocation from '../components/form/formlocation.vue';
+import Services from '../components/Servive/Services.vue';
 
 
 const routes = [
@@ -51,6 +52,11 @@ const routes = [
     path: '/formlocation',
     name: 'FormLocation',
     component: FormLocation
+  },
+  {
+    path: '/Services',
+    name: 'Services',
+    component: Services
   }
 ];
 

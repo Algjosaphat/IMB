@@ -1,10 +1,11 @@
 <template>
   <div>
     <!-- Ajout du header -->
-    <Header />
+    <Heder />
 
-    <div class="max-w-2xl mx-auto p-6 m-10 bg-white rounded-lg shadow-md">
-      <h2 class="text-2xl font-bold mb-6">Mettre en vente une propriété</h2>
+    <div class="p-12"></div>
+    <div class="max-w-2xl mx-auto p-12 m-10 bg-white rounded-lg shadow-md">
+        <h2 class=" flex justify-center text-2xl font-bold mb-6">Mettre en vente une propriété</h2>
 
       <form @submit.prevent="submitForm">
         <!-- Étape 1 : Informations personnelles -->
@@ -65,7 +66,7 @@
           />
 
           <div class="flex justify-end mt-4">
-            <button @click="nextStep" class="bg-yellow-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-700">
+            <button @click="nextStep" class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
               Suivant
             </button>
           </div>
@@ -101,10 +102,10 @@
 
 
           <div class="flex justify-between mt-4">
-            <button @click="previousStep" class="bg-gray-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-gray-600">
+            <button @click="previousStep" class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
               Précédent
             </button>
-            <button @click="nextStep" class="bg-yellow-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-700">
+            <button @click="nextStep" class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
               Suivant
             </button>
           </div>
@@ -129,10 +130,10 @@
             required
           />
           <div class="flex justify-between mt-4">
-            <button @click="previousStep" class="bg-gray-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-gray-600">
+            <button @click="previousStep" class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
               Précédent
             </button>
-            <button type="submit" class="bg-yellow-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-700">
+            <button type="submit" class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105">
               Soumettre
             </button>
           </div>
@@ -141,15 +142,19 @@
     </div>
 
     <!-- Ajout du footer -->
-    <Footer />
+    <Foter />
   </div>
 </template>
 
 <script>
-import Header from '../Helper/Header.vue';
-import Footer from '../Helper/Footer.vue';
+import Heder from '../Helper/Header.vue';
+import Foter from '../Helper/Footer.vue';
 
 export default {
+  components: {
+    Heder,
+    Foter,
+  },
   data() {
     return {
       step: 1,

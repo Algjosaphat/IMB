@@ -21,9 +21,11 @@
               <label for="password" class="block text-sm font-medium text-gray-700">Mot de Passe</label>
               <input type="password" id="password" v-model="password" class="bg-white px-3 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required />
             </div> 
-            <button to="/" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 w-full text-center transition duration-150 ease-in-out" v-if="email && password">
-              <router-link to="/" >Connexion</router-link>
-            </button>
+            <div class="flex justify-center">
+              <button to="/" class="bg-green-600 flex justify-center text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105" v-if="email && password">
+                <router-link to="/" >Connexion</router-link>
+              </button>
+            </div>
           </form>
           <p class="mt-4 text-center">
             Vous n'avez pas de compte? <router-link to="/signin" class="text-blue-600 hover:text-blue-700">Inscrivez-vous</router-link>

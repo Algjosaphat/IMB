@@ -1,5 +1,5 @@
 <template>
-  <header class="shadow-2xl fixed w-full top-5 rounded-full left-0 z-50 bg-white">
+  <header class="shadow-2xl fixed w-full sm:top-5 sm:rounded-full left-0 z-50 bg-white">
     <div class="container mx-auto flex items-center justify-between m-2">
       <!-- Affichage du logo sur tous les écrans avec ajustements -->
       <div class="text-2xl font-bold flex items-center gap-2">
@@ -67,23 +67,27 @@
       <nav class="mt-2 p-6">
         <router-link to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Accueil</router-link>
         <router-link to="/properties" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Propriétés</router-link>
+        <router-link to="/Services" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Services</router-link>
         <router-link to="/about" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">À propos</router-link>
         <router-link to="/contact" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</router-link>
 
         <!-- Boutons de connexion/déconnexion pour mobile -->
-        <router-link 
-          v-if="!userLoggedIn"
-          to="/login" 
-          class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
-          Connexion
-        </router-link>
-        <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
-        <button 
-          v-if="userLoggedIn"
-          @click="logout" 
-          class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
-          Déconnexion
-        </button>
+         <div class="flex justify-center">
+           <router-link 
+             v-if="!userLoggedIn"
+             to="/login" 
+             class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-green-600">
+             Connexion
+           </router-link>
+           <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Notifications</router-link>
+           <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
+           <button 
+             v-if="userLoggedIn"
+             @click="logout" 
+             class="bg-green-600 flex justify-center text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
+             Déconnexion
+           </button>
+         </div>
       </nav>
     </div>
 
@@ -108,6 +112,7 @@ const userName = ref('');
 const links = [
   { name: 'Accueil', to: '/', clickHandler: closeMenu },
   { name: 'Propriétés', to: '/properties', clickHandler: closeMenu },
+  { name: 'Services', to: '/Services', clickHandler: closeMenu },
   { name: 'À propos', to: '/about', clickHandler: closeMenu },
   { name: 'Contact', to: '/contact', clickHandler: closeMenu },
 ];
