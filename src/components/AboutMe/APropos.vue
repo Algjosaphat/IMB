@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <Header />
+    <Heder />
     <div class="container mx-auto py-32 px-14">
       <h1 class="text-4xl font-bold text-center mb-8">À Propos de Nous</h1>
       <div class="bg-white shadow-lg rounded-lg p-8 mb-8">
@@ -44,18 +44,18 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <Foter />
   </div>
 </template>
 
 <script>
-import Header from '../Helper/Header.vue';
-import Footer from '../Helper/Footer.vue';
+import Heder from '../Helper/Header.vue';
+import Foter from '../Helper/Footer.vue';
 
 export default {
   components: {
-    Header,
-    Footer,
+    Heder,
+    Foter,
   },
 };
 </script>

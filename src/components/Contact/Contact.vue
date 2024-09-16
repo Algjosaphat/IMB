@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <Header />
+    <Heder />
     <div class="container mx-auto py-28 px-14">
       <h1 class="text-4xl font-bold text-center mb-8">Nous Contacter</h1>
       <div class="flex flex-col md:flex-row md:space-x-8">
@@ -26,9 +26,11 @@
               <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
               <textarea id="message" v-model="form.message" rows="4" placeholder="Votre message..." class="bg-slate-100 ps-2 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
             </div>
-            <button type="submit" class="bg-blue-600 text-white py-2 w-full rounded-xl hover:bg-blue-700">
-              Envoyer
-            </button>
+            <div class="flex justify-center ">
+              <button type="submit" class="bg-green-600 text-white py-2 px-20 rounded-full shadow-md transition-transform transform hover:scale-105">
+                Envoyer
+              </button>
+            </div>
           </form>
         </div>
         <!-- Informations de Contact -->
@@ -49,18 +51,18 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <Foter />
   </div>
 </template>
 
 <script>
-import Header from '../Helper/Header.vue';
-import Footer from '../Helper/Footer.vue';
+import Heder from '../Helper/Header.vue';
+import Foter from '../Helper/Footer.vue';
 
 export default {
   components: {
-    Header,
-    Footer,
+    Heder,
+    Foter,
   },
   data() {
     return {

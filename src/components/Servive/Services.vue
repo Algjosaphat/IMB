@@ -1,11 +1,28 @@
 <!-- Nos Services -->
 
+<!-- Home.vue -->
+
 <template>
-    
+
+    <Heder />
+
+    <Foter />
+    <!--  -->
+
 </template>
+  
 <script>
-// Les scripts de la partie des services
+    import Heder from '../Helper/Header.vue';
+    import Foter from '../Helper/Footer.vue';
+
+    export default {
+    components: {
+        Heder,
+        Foter,
+    },
+    };
 </script>
-<style>
-/* Le css de la partie des services */
+
+<style scoped>
+
 </style>

@@ -2,7 +2,7 @@
 
 <template>
     <div>
-      <Header />
+      <Heder />
       <div class="container mx-auto py-32 px-14">
         <h1 class="text-4xl font-bold text-center mb-12">Nos Propriétés</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -30,27 +30,30 @@
                   <li>{{ property.features.parking }} Place(s) de parking</li>
                 </ul>
               </div>
-              <router-link :to="{ path: '/contact' }">
-                <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
-                  Contactez-nous
-                </button>
-              </router-link>
+              <br>
+              <div class="flex justify-center">
+                <router-link :to="{ path: '/contact' }">
+                  <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
+                    Contactez-nous
+                  </button>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
+      <Foter />
     </div>
   </template>
   
   <script>
-  import Header from '../Helper/Header.vue';
-  import Footer from '../Helper/Footer.vue';
+  import Heder from '../Helper/Header.vue';
+  import Foter from '../Helper/Footer.vue';
   
   export default {
     components: {
-      Header,
-      Footer,
+      Heder,
+      Foter,
     },
     data() {
       return {
