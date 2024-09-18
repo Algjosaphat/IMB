@@ -37,11 +37,14 @@
             <!-- Affichage du message d'erreur si les mots de passe ne correspondent pas ou si une autre erreur survient -->
             <p v-if="registerError" class="text-red-600 mb-4">{{ registerError }}</p>
             
+            <!-- Bouton avec un loader et désactivé pendant le chargement -->
             <button 
               type="submit" 
-              class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 w-full transition duration-150 ease-in-out"
-              :disabled="!name || !email || !password || !confirmPassword">
-              S'inscrire
+              class="bg-green-600 flex justify-center text-white py-2 px-10 w-full rounded-full shadow-md transition-transform transform hover:scale-105"
+              :disabled="!name || !email || !password || !confirmPassword || isLoading">
+              <!-- Loader ou texte -->
+              <span v-if="isLoading" class="loader mr-2"></span> <!-- Ajout d'une icône spinner ou loader -->
+              {{ isLoading ? 'En cours...' : 'S\'inscrire' }}
             </button>
           </form>
 
@@ -69,14 +72,19 @@ export default {
     const password = ref('');
     const confirmPassword = ref('');
     const registerError = ref('');
+    const isLoading = ref(false);  // État de chargement
     const router = useRouter();
 
     const register = async () => {
-      // Vérifier si le mot de passe et la confirmation du mot de passe sont identiques
+      // Vérifier si les mots de passe correspondent
       if (password.value !== confirmPassword.value) {
         registerError.value = 'Les mots de passe ne correspondent pas';
         return;
       }
+
+      // Début du chargement
+      isLoading.value = true;
+      registerError.value = ''; // Réinitialiser le message d'erreur
 
       try {
         // Appel à l'API pour l'inscription
@@ -86,22 +94,26 @@ export default {
           password: password.value,
         });
 
-        // Inscription réussie, récupération du token et des informations de l'utilisateur
-        const { token, user } = response.data;
+        // Si l'inscription est réussie
+        if (response.data) {
+          // Stocker le token et le nom de l'utilisateur dans le localStorage
+          const { token, user } = response.data;
+          localStorage.setItem('authToken', token);
+          localStorage.setItem('userName', user.name);
 
-        // Stocker le token et les informations utilisateur dans le localStorage
-        localStorage.setItem('authToken', token);
-        localStorage.setItem('userName', user.name);
-
-        // Redirection vers la page de connexion après inscription réussie
-        router.push('/login');
+          // Rediriger vers la page de connexion
+          router.push('/login');
+        }
       } catch (error) {
-        // Gestion des erreurs lors de l'inscription
+        // Gestion des erreurs d'inscription
         if (error.response && error.response.status === 400) {
           registerError.value = 'L\'inscription a échoué. Veuillez vérifier les informations saisies.';
         } else {
-          registerError.value = 'Une erreur est survenue. Veuillez réessayer.';
+          router.push('/login');
         }
+      } finally {
+        // Fin du chargement
+        isLoading.value = false;
       }
     };
 
@@ -111,6 +123,7 @@ export default {
       password,
       confirmPassword,
       registerError,
+      isLoading,  // Retourner l'état isLoading
       register,
     };
   },
@@ -118,5 +131,18 @@ export default {
 </script>
 
 <style scoped>
-/* Styles supplémentaires si nécessaire */
+/* Styles supplémentaires pour le loader */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>

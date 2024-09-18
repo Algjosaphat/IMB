@@ -17,9 +17,11 @@
 </template>
 
 <script setup>
-// Importation de FontAwesomeIcon n'est pas nécessaire ici car il est enregistré globalement dans main.js
+// import 'boxicons';
+// Importation de FontAwesomeIcon n'est pas nécessaire ici car il est enregistré globalement dans main.js -->
 </script>
 
 <style scoped>
 /* Ajoute des styles spécifiques si nécessaire */
 </style>
+

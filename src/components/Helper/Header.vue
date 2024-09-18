@@ -41,7 +41,10 @@
           <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
             <router-link to="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
             <router-link to="/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</router-link>
-            <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Déconnexion</button>
+            <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+              Déconnexion
+              <router-link to="/"></router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -72,21 +75,29 @@
         <router-link to="/contact" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</router-link>
 
         <!-- Boutons de connexion/déconnexion pour mobile -->
-         <div class="flex justify-center">
-           <router-link 
-             v-if="!userLoggedIn"
-             to="/login" 
-             class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-green-600">
-             Connexion
-           </router-link>
-           <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Notifications</router-link>
-           <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
-           <button 
-             v-if="userLoggedIn"
-             @click="logout" 
-             class="bg-green-600 flex justify-center text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
-             Déconnexion
-           </button>
+         <div class="">
+          <div class="flex justify-center">
+            <router-link 
+              v-if="!userLoggedIn"
+              to="/login" 
+              class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-green-600">
+              Connexion
+            </router-link>
+          </div>
+           <div class="flex justify-center">
+             <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Notifications</router-link>
+           </div>
+           <div class="flex justify-center">
+             <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
+           </div>
+           <div class="flex justify-center">
+             <button 
+               v-if="userLoggedIn"
+               @click="logout" 
+               class="bg-green-600 flex justify-center text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
+               Déconnexion
+             </button>
+           </div>
          </div>
       </nav>
     </div>
