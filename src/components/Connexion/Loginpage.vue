@@ -38,7 +38,7 @@
             <div class="flex justify-center">
               <button 
                 type="submit" 
-                class="bg-green-600 text-white py-2 px-10 w-full rounded-full shadow-md transition-transform transform hover:scale-105 flex justify-center items-center"
+                class="bg-green-600 text-white py-2 w-full rounded-full shadow-md transition-transform transform hover:scale-105 flex justify-center items-center"
                 :disabled="!email || !password || isLoading">
                 <!-- Loader ou texte "Connexion" -->
                 <span v-if="isLoading" class="loader mr-2"></span> <!-- Ajout d'un loader -->

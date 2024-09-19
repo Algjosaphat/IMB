@@ -40,7 +40,7 @@
             <!-- Bouton avec un loader et désactivé pendant le chargement -->
             <button 
               type="submit" 
-              class="bg-green-600 flex justify-center text-white py-2 px-10 w-full rounded-full shadow-md transition-transform transform hover:scale-105"
+              class="bg-green-600 flex justify-center text-white py-2 w-full rounded-full shadow-md transition-transform transform hover:scale-105"
               :disabled="!name || !email || !password || !confirmPassword || isLoading">
               <!-- Loader ou texte -->
               <span v-if="isLoading" class="loader mr-2"></span> <!-- Ajout d'une icône spinner ou loader -->
@@ -109,6 +109,17 @@ export default {
         if (error.response && error.response.status === 400) {
           registerError.value = 'L\'inscription a échoué. Veuillez vérifier les informations saisies.';
         } else {
+// 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+            // Appeler l'API de connexion après l'inscription
+            // const loginResponse = await axios.post('https://immobhprcoop.onrender.com/users/login', {
+            //   email: email.value,
+            //   password: password.value,
+            // });
+            // const { token, user } = loginResponse.data;
+            // localStorage.setItem('authToken', token);
+            // localStorage.setItem('userName', user.name);
+            // router.push('/');
+// 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
           router.push('/login');
         }
       } finally {

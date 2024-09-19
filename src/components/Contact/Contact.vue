@@ -27,7 +27,7 @@
               <textarea id="message" v-model="form.message" rows="4" placeholder="Votre message..." class="bg-slate-100 ps-2 py-2 mt-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
             </div>
             <div class="flex justify-center ">
-              <button type="submit" class="bg-green-600 text-white py-2 px-20 rounded-full shadow-md transition-transform transform hover:scale-105">
+              <button type="submit" class="bg-green-600 text-white py-2 w-full rounded-full shadow-md transition-transform transform hover:scale-105">
                 Envoyer
               </button>
             </div>
