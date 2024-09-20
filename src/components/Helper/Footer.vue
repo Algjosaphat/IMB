@@ -29,9 +29,9 @@
         <!-- Coordonnées -->
         <div class="flex flex-col space-y-4">
           <h4 class="text-lg font-semibold">Contactez-Nous</h4>
-          <p>Godomey Salamey</p>
+          <p>Ville: Godomey Salamey</p>
           <p>Téléphone: (+229) 98 88 98 60 / 66 23 73 68</p>
-          <p>Email: </p>
+          <p>Email: hprcoop@gmail.com </p>
         </div>
 
         <!-- Réseaux sociaux -->

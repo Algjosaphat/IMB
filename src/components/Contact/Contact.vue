@@ -38,7 +38,8 @@
           <h2 class="text-2xl font-semibold mb-4">Informations de Contact</h2>
           <p class="mb-2">Godomey Salamey sixième boutique la von du bar sous-solv en venant du CEG Godomey</p>
           <p class="mb-2">Téléphone: (+229) 98 88 98 60 / 66 23 73 68</p>
-          <p class="mb-4">Email: </p>
+          <p class="mb-4">Email: hprcoop@gmail.com </p>
+          <br>
           <div class="h-72">
             <iframe
               class="w-full h-full rounded-lg shadow-md"

@@ -118,6 +118,7 @@ export default {
   background-position: center;
   background-attachment: fixed;
 }
+
 .carousel-container {
   max-width: 100%;
   overflow-x: hidden;
