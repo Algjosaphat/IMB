@@ -111,16 +111,16 @@ export default {
         } else {
 // 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
             // Appeler l'API de connexion après l'inscription
-            // const loginResponse = await axios.post('https://immobhprcoop.onrender.com/users/login', {
-            //   email: email.value,
-            //   password: password.value,
-            // });
-            // const { token, user } = loginResponse.data;
-            // localStorage.setItem('authToken', token);
-            // localStorage.setItem('userName', user.name);
-            // router.push('/');
+            const loginResponse = await axios.post('https://immobhprcoop.onrender.com/users/login', {
+              email: email.value,
+              password: password.value,
+            });
+            const { token, user } = loginResponse.data;
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('userName', user.name);
+            router.push('/');
 // 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-          router.push('/login');
+          // router.push('/login');
         }
       } finally {
         // Fin du chargement

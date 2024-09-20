@@ -96,6 +96,7 @@
                @click="logout" 
                class="bg-green-600 flex justify-center text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
                Déconnexion
+               <router-link to="/"></router-link>
              </button>
            </div>
          </div>
@@ -137,30 +138,28 @@ function toggleDropdown() {
   dropdownOpen.value = !dropdownOpen.value;
 }
 
-// Fonction pour vérifier si l'utilisateur est connecté (ex: présence d'un token dans le local storage)
-const userLoggedIn = computed(() => {
-  return localStorage.getItem('authToken') !== null;
-});
-function checkUserLoggedIn() {
-  userLoggedIn.value = localStorage.getItem('authToken') !== null;
-}
+ // Fonction pour vérifier si l'utilisateur est connecté (ex: présence d'un token dans le local storage)
+ const userLoggedIn = computed(() => {
+    return localStorage.getItem('authToken') !== null;
+  });
+  function checkUserLoggedIn() {
+    userLoggedIn.value = localStorage.getItem('authToken') !== null;
+  }
 
-// Déconnexion
-function logout() {
-  localStorage.removeItem('authToken');  // Supprimer le token ou autre identifiant de connexion
-  // Optionnel : Redirection vers la page de connexion après déconnexion
-  localStorage.removeItem('userName');   // Supprimer le nom d'utilisateur
-  dropdownOpen.value = false; // Fermer le menu déroulant
-  checkUserLoggedIn();        // Mettre à jour l'état de connexion
-  router.push('/');           // Optionnel : Rediriger vers la page d'accueil
-  window.location.reload();  // Actualiser la page
-}
+  // Déconnexion
+  function logout() {
+    localStorage.removeItem('authToken');  // Supprimer le token ou autre identifiant de connexion
+    localStorage.removeItem('userName');   // Supprimer le nom d'utilisateur
+    dropdownOpen.value = false; // Fermer le menu déroulant
+    checkUserLoggedIn();        // Mettre à jour l'état de connexion
+    window.location.reload();  // Actualiser la page
+  }
 
-// Route active
-const route = useRoute();
-function isActive(linkRoute) {
-  return route.path === linkRoute;
-}
+  // Route active
+  const route = useRoute();
+  function isActive(linkRoute) {
+    return route.path === linkRoute;
+  }
 
 function closeMenu() {
   isMenuOpen.value = false;  // Fermer le menu

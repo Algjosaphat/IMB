@@ -96,6 +96,8 @@ export default {
     clearInterval(this.autoSlideInterval);
   }
 };
+
+
 </script>
 
 <style scoped>
