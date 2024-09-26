@@ -39,8 +39,8 @@
 
           <!-- Menu déroulant pour l'utilisateur -->
           <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
-            <router-link to="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
-            <router-link to="/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</router-link>
+            <router-link to="/profil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
+            <router-link to="/notifications" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</router-link>
             <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
               Déconnexion
               <router-link to="/"></router-link>
@@ -85,10 +85,10 @@
             </router-link>
           </div>
            <div class="flex justify-center">
-             <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Notifications</router-link>
+             <router-link v-if="userLoggedIn" to="/notifications" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Notifications</router-link>
            </div>
            <div class="flex justify-center">
-             <router-link v-if="userLoggedIn" to="/" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
+             <router-link v-if="userLoggedIn" to="/profil" class="block text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil</router-link>
            </div>
            <div class="flex justify-center">
              <button 

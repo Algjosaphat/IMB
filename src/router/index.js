@@ -10,6 +10,8 @@ import Signinpage from '../components/Connexion/Signinpage.vue';
 import FormVente from '../components/form/formvente.vue';
 import FormLocation from '../components/form/formlocation.vue';
 import Services from '../components/Servive/Services.vue';
+import Profil from '../components/profil/profil.vue';
+import Notifications from '../components/notifications/notifications.vue';
 
 
 const routes = [
@@ -57,6 +59,16 @@ const routes = [
     path: '/Services',
     name: 'Services',
     component: Services
+  },
+  {
+    path: '/profil',
+    name: 'Profil',
+    component: Profil
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: Notifications
   }
 ];
 
