@@ -1,64 +1,133 @@
-<!-- Articles.vue -->
-
 <template>
-    <div>
-      <Heder />
-      <div class="container mx-auto py-32 px-14">
-        <h1 class="text-4xl font-bold text-center mb-12">Nos Propriétés</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="(property, index) in properties" :key="index" class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img :src="property.image" alt="Property Image" class="w-full h-64 object-cover" />
-            <div class="p-6">
-              <h2 class="text-2xl font-bold mb-2">{{ property.title }}</h2>
-              <p class="text-gray-700 mb-4">{{ property.description }}</p>
-              <div class="flex flex-col md:flex-row md:justify-between mb-4">
-                <div>
-                  <h3 class="text-xl font-semibold">Prix</h3>
-                  <p class="text-lg text-green-600">{{ property.price }}</p>
-                </div>
-                <div>
-                  <h3 class="text-xl font-semibold">Localisation</h3>
-                  <p>{{ property.location }}</p>
-                </div>
+  <div>
+    <Heder />
+    <div class="container mx-auto py-32 px-14">
+      <h1 class="text-4xl font-bold text-center mb-12">Nos Propriétés</h1>
+
+      <!-- Filtres -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <div>
+          <label for="city">Ville:</label>
+          <select v-model="filters.city" id="city" class="border p-2 rounded">
+            <option value="">Toutes</option>
+            <option value="Paris">Paris</option>
+            <option value="Normandie">Normandie</option>
+            <option value="Marseille">Marseille</option>
+            <option value="Côte d'Azur">Côte d'Azur</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="minPrice">Prix Min:</label>
+          <input type="number" v-model.number="filters.minPrice" id="minPrice" class="border p-2 rounded" />
+        </div>
+
+        <div>
+          <label for="maxPrice">Prix Max:</label>
+          <input type="number" v-model.number="filters.maxPrice" id="maxPrice" class="border p-2 rounded" />
+        </div>
+
+        <div>
+          <label for="bedrooms">Chambres:</label>
+          <input type="number" v-model.number="filters.bedrooms" id="bedrooms" class="border p-2 rounded" />
+        </div>
+
+        <div>
+          <label for="bathrooms">Salles de bain:</label>
+          <input type="number" v-model.number="filters.bathrooms" id="bathrooms" class="border p-2 rounded" />
+        </div>
+      </div>
+
+      <!-- Liste des propriétés -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-for="(property, index) in filteredProperties" :key="index" class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img :src="property.image" alt="Property Image" class="w-full h-64 object-cover" />
+          <div class="p-6">
+            <h2 class="text-2xl font-bold mb-2">{{ property.title }}</h2>
+            <p class="text-gray-700 mb-4">{{ property.description }}</p>
+            <div class="flex flex-col md:flex-row md:justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-semibold">Prix</h3>
+                <p class="text-lg text-green-600">{{ property.price }}</p>
               </div>
-              <div class="mb-4">
-                <h3 class="text-xl font-semibold">Caractéristiques</h3>
-                <ul class="list-disc pl-5">
-                  <li>{{ property.features.bedrooms }} Chambres</li>
-                  <li>{{ property.features.bathrooms }} Salles de bain</li>
-                  <li>{{ property.features.size }} m²</li>
-                  <li>{{ property.features.parking }} Place(s) de parking</li>
-                </ul>
+              <div>
+                <h3 class="text-xl font-semibold">Localisation</h3>
+                <p>{{ property.location }}</p>
               </div>
-              <br>
-              <div class="flex justify-center">
-                <router-link :to="{ path: '/contact' }">
-                  <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
-                    Contactez-nous
-                  </button>
-                </router-link>
-              </div>
+            </div>
+            <div class="mb-4">
+              <h3 class="text-xl font-semibold">Caractéristiques</h3>
+              <ul class="list-disc pl-5">
+                <li>{{ property.features.bedrooms }} Chambres</li>
+                <li>{{ property.features.bathrooms }} Salles de bain</li>
+                <li>{{ property.features.size }} m²</li>
+                <li>{{ property.features.parking }} Place(s) de parking</li>
+              </ul>
+            </div>
+            <br>
+            <div class="flex justify-center">
+              <router-link :to="{ path: '/contact' }">
+                <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
+                  Contactez-nous
+                </button>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
-      <Foter />
     </div>
-  </template>
-  
-  <script>
-  import Heder from '../Helper/Header.vue';
-  import Foter from '../Helper/Footer.vue';
-  
-  export default {
-    components: {
-      Heder,
-      Foter,
-    },
-    data() {
-      return {
-        properties: [
-          {
+    <Foter />
+  </div>
+</template>
+
+<script>
+import Heder from '../Helper/Header.vue';
+import Foter from '../Helper/Footer.vue';
+
+export default {
+  components: {
+    Heder,
+    Foter,
+  },
+  data() {
+    return {
+      filters: {
+        city: '',
+        minPrice: 0,
+        maxPrice: 0,
+        bedrooms: 0,
+        bathrooms: 0,
+      },
+      properties: [
+        {
+          image: 'https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg',
+          title: 'Belle Maison à Paris',
+          description: 'Maison spacieuse avec jardin, située dans un quartier calme de Paris.',
+          price: 750000,
+          location: 'Paris',
+          features: {
+            bedrooms: 4,
+            bathrooms: 3,
+            size: 150,
+            parking: 2
+          }
+        },
+        // Ajoute d'autres propriétés ici
+        {
+          image: 'https://media.inmobalia.com/imgV1/B98Le8~d7Me7MjCwPLJ6Ayra8IUhJ5ktnTPjoqTXEgsEG0U7f5gnGvKgfz7aB8oKA_XWwr_PYfPFkRpynsJ0kvms_koqAmhpoOHQYRswhYQFl3Ad0eZY.jpeg',
+          title: 'Maison de Campagne en Normandie',
+          description: 'Charmante maison de campagne avec grand jardin.',
+          price: 350000,
+          location: 'Normandie',
+          features: {
+            bedrooms: 5,
+            bathrooms: 4,
+            size: 200,
+            parking: 3
+          }
+        },
+        // autres propriétés...
+        {
             image: 'https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg',
             title: 'Belle Maison à Paris',
             description: 'Maison spacieuse avec jardin, située dans un quartier calme de Paris.',
@@ -111,16 +180,27 @@
               parking: 4
             }
           },
-        ]
-      };
+      ]
+    };
+  },
+  computed: {
+    filteredProperties() {
+      return this.properties.filter(property => {
+        const meetsCity = this.filters.city === '' || property.location === this.filters.city;
+        const meetsPrice =
+          (this.filters.minPrice === 0 || property.price >= this.filters.minPrice) &&
+          (this.filters.maxPrice === 0 || property.price <= this.filters.maxPrice);
+        const meetsBedrooms = this.filters.bedrooms === 0 || property.features.bedrooms >= this.filters.bedrooms;
+        const meetsBathrooms = this.filters.bathrooms === 0 || property.features.bathrooms >= this.filters.bathrooms;
+        return meetsCity && meetsPrice && meetsBedrooms && meetsBathrooms;
+      });
     }
-  };
-  </script>
-  
-  <style scoped>
-  /* Ajoute des styles spécifiques si nécessaire */
-  .container {
-    max-width: 1200px;
   }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.container {
+  max-width: 1200px;
+}
+</style>

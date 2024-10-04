@@ -6,15 +6,23 @@
     <!-- Contenu principal de la page de profil -->
      <div class="p-6"></div>
     <div class="container mx-auto p-8 bg-white rounded-lg shadow-lg mt-8">
-      <h1 class="text-4xl font-bold mb-4 text-center">Mon Profil</h1>
+      <h1 class="text-4xl font-bold mb-4 text-center" style="color: darkgreen;">Mon Profil</h1>
       
       <!-- Affichage des informations utilisateur -->
       <div class="profile-info bg-green-50 p-6 rounded-lg shadow-md">
+        <div v-if="showEditForm" class="flex justify-center" style="color: darkolivegreen;">Aperçu</div>
         <div class="flex items-center mb-6">
-          <!-- Affichage de la photo de profil -->
-          <img :src="profilePictureUrl || defaultProfilePicture" alt="Photo de profil" class="rounded-full w-32 h-32 object-cover mr-6" />
+          <!-- Photo de profil ou icône par défaut -->
+          <div v-if="profilePictureUrl">
+            <img :src="profilePictureUrl" alt="Photo de profil" class="rounded-full w-32 h-32 object-cover mr-6" />
+          </div>
+          <div v-else class="text-gray-500 w-32 h-32 rounded-full mr-6" style="background-color: darkgray;">
+            <font-awesome-icon :icon="['fas', 'user']" class="text-gray-500 w-32 h-24 rounded-full p-1" />
+          </div>
           <div>
-            <h2 class="text-2xl font-semibold">{{ fullName || 'Nom non renseigné' }}</h2>
+            <span class="mr-2 text-black">
+              {{ userName || 'Nom non renseigné' }}
+            </span>
             <p class="text-gray-600">{{ phoneNumber || 'Téléphone non renseigné' }}</p>
             <p class="text-gray-600">{{ whatsappNumber || 'WhatsApp non renseigné' }}</p>
             <p class="text-gray-600">{{ birthDate || 'Date de naissance non renseignée' }}</p>
@@ -23,17 +31,45 @@
 
         <!-- Bouton pour compléter le profil -->
         <div class="text-center">
-          <button @click="showEditForm = true" class="bg-green-600 text-white py-2 p-6 rounded-full shadow-md transition-transform transform hover:scale-105">
+          <button @click="showEditForm = true" class="bg-green-600 text-white py-2 p-6 rounded-full shadow-md transition-transform hover:scale-105">
             Compléter mon profil
           </button>
         </div>
       </div>
 
-      <!-- Formulaire pour compléter le profil (affiché conditionnellement) -->
+      <!-- Formulaire pour compléter le profil -->
       <div v-if="showEditForm" class="mt-8 bg-blue-50 p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">Compléter mon profil</h2>
-
+        
         <form @submit.prevent="saveProfile" class="space-y-6">
+          <!-- Photo de profil avec option de téléchargement -->
+                    <!-- Photo de profil avec option de téléchargement -->
+                    <div class="flex flex-col items-center mb-6">
+            <!-- Affiche l'icône FontAwesome si aucune image de profil n'est définie -->
+            <font-awesome-icon 
+              v-if="!newProfilePicturePreview && !profilePictureUrl && defaultProfilePicture" 
+              :icon="['fas', 'user']" 
+              class="text-gray-500 w-32 h-32 rounded-full p-1" 
+              style="color: #16A31A;"
+            />
+            
+            <!-- Affiche une image si elle est disponible -->
+            <img 
+              v-else 
+              :src="newProfilePicturePreview || profilePictureUrl || defaultProfilePicture" 
+              alt="Photo de profil" 
+              class="rounded-full w-32 h-32 object-cover mb-4" 
+            /> 
+            
+            <!-- Champ pour télécharger une nouvelle image -->
+            <input 
+              type="file" 
+              @change="onProfilePictureChange" 
+              accept="image/*" 
+              class="mt-2" 
+            />
+          </div>
+
           <!-- Nom complet -->
           <div>
             <label for="fullName" class="block font-semibold">Nom complet :</label>
@@ -81,31 +117,63 @@
 </template>
 
 <script setup>
+import axios from 'axios'; // Importer axios
 import Heder from '../Helper/Header.vue'; // Importer le composant Header
 import Foter from '../Helper/Footer.vue'; // Importer le composant Footer
 import { ref, onMounted } from 'vue';
 
 const defaultProfilePicture = '/path/to/default-profile.png'; // Image de profil par défaut
 const profilePictureUrl = ref('');
-const fullName = ref('');
+const userName = ref('');
+const fullName = ref(''); 
 const birthDate = ref('');
 const phoneNumber = ref('');
 const whatsappNumber = ref('');
 const cipPdfName = ref('');
 const showEditForm = ref(false);  // Contrôle l'affichage du formulaire de complétion
 
+// Fonction pour récupérer les données utilisateur via l'API
+async function fetchUserProfile() {
+  try {
+    const response = await axios.get('https://api.example.com/user/profile'); // URL de l'API
+    const data = response.data;
+
+    // Mise à jour des informations utilisateur depuis l'API
+    userName.value = data.userName || 'Nom non renseigné';
+    fullName.value = data.fullName || '';
+    birthDate.value = data.birthDate || 'Date de naissance non renseignée';
+    phoneNumber.value = data.phoneNumber || 'Téléphone non renseigné';
+    whatsappNumber.value = data.whatsappNumber || 'WhatsApp non renseigné';
+    
+    // Remplacement de l'image par celle fournie par l'API
+    if (data.profilePictureUrl) {
+      profilePictureUrl.value = data.profilePictureUrl;
+    } else {
+      profilePictureUrl.value = defaultProfilePicture; // Utilisation de l'image par défaut
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération du profil utilisateur :", error);
+  }
+}
+
 // Chargement des informations utilisateur au montage de la page
 onMounted(() => {
-  // Exemple de chargement des données depuis localStorage (ou une API)
-  profilePictureUrl.value = localStorage.getItem('profilePictureUrl') || '';
-  fullName.value = localStorage.getItem('fullName') || '';
-  birthDate.value = localStorage.getItem('birthDate') || '';
-  phoneNumber.value = localStorage.getItem('phoneNumber') || '';
-  whatsappNumber.value = localStorage.getItem('whatsappNumber') || '';
-  cipPdfName.value = localStorage.getItem('cipPdfName') || '';
+  userName.value = localStorage.getItem('userName') || 'Utilisateur'; // Nom de l'utilisateur connecté
+  fetchUserProfile(); // Appeler l'API pour charger les données utilisateur
 });
 
-// Gestion de la photo de profil
+// onMounted(() => {
+//   // Récupération des données utilisateur depuis localStorage
+//   profilePictureUrl.value = localStorage.getItem('profilePictureUrl') || '';
+//   userName.value = localStorage.getItem('userName') || 'Utilisateur'; // Nom de l'utilisateur connecté
+//   fullName.value = localStorage.getItem('fullName') || '';
+//   birthDate.value = localStorage.getItem('birthDate') || '';
+//   phoneNumber.value = localStorage.getItem('phoneNumber') || '';
+//   whatsappNumber.value = localStorage.getItem('whatsappNumber') || '';
+//   cipPdfName.value = localStorage.getItem('cipPdfName') || '';
+// });
+
+// Gestion de la photo de profil locale si l'utilisateur souhaite la changer
 function onProfilePictureChange(event) {
   const file = event.target.files[0];
   if (file && file.type.startsWith('image/')) {
@@ -127,6 +195,7 @@ function onCipPdfChange(event) {
 
 // Sauvegarde du profil
 function saveProfile() {
+  // Sauvegarde locale ou API
   localStorage.setItem('profilePictureUrl', profilePictureUrl.value);
   localStorage.setItem('fullName', fullName.value);
   localStorage.setItem('birthDate', birthDate.value);
@@ -137,7 +206,10 @@ function saveProfile() {
   alert('Profil mis à jour !');
   showEditForm.value = false; // Fermer le formulaire après la sauvegarde
 }
+
+
 </script>
+
 
 <style scoped>
 .profile-page {

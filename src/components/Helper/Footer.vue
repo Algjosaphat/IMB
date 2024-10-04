@@ -53,7 +53,7 @@
       </div>
       
       <p class="text-lg mt-4">© 2024 Votre Agence Immobilière. Tous droits réservés.</p>
-      <br>
+      <!-- <br> -->
     </div>
   </footer>
 </template>
