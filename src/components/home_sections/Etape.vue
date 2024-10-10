@@ -8,7 +8,7 @@
         <div class="flex flex-col items-center">
           <span class="text-xl md:text-2xl font-semibold mb-4">Faîtes vos choix</span>
           <font-awesome-icon 
-            :icon="['fas', 'wand-magic-sparkles']" 
+            :icon="['fas', 'search']" 
             size="lg" 
             style="color: #63E6BE;" 
             class="text-2xl bg-slate-100 rounded-full w-10 h-10 md:w-20 md:h-20 p-6 md:p-10" 
@@ -28,11 +28,11 @@
         <div class="flex flex-col items-center">
           <span class="text-xl md:text-2xl font-semibold mb-4">Procedons aux demarches</span>
           <font-awesome-icon 
-            :icon="['fas', 'search']" 
+            :icon="['fas', 'wand-magic-sparkles']" 
             size="lg" 
             style="color: #63E6BE;" 
             class="text-2xl bg-slate-100 rounded-full w-10 h-10 md:w-20 md:h-20 p-6 md:p-10" 
-          />
+          /> 
         </div>
       </div>
     </section>

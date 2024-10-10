@@ -1,32 +1,13 @@
 <template>
-    <heder/>
-    <div class="p-6"></div>
-    <section ref="servicesSection" class="container mx-auto py-16 px-4">
-      <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Nos Services</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Services list -->
-        <div 
-          v-for="(service, index) in services" 
-          :key="index" 
-          :ref="`service${index}`" 
-          class="bg-white shadow-lg rounded-lg p-6"
-        >
-          <h2 class="text-2xl font-semibold mb-4 text-green-700 flex justify-center">{{ service.title }}</h2>
-          <p class="text-gray-600">{{ service.description }}</p>
-          <div class="py-1 flex justify-center">
-            <router-link 
-              :to="service.link" 
-              class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105"
-            >
-              Consulté <font-awesome-icon :icon="['fas', 'eye']" />
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </section>
-    <foter/>
-  </template>
-  
+  <heder/>
+  <div class="container mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">{{ service.title }}</h1>
+    <p class="text-gray-600">{{ service.details }}</p>
+    <router-link to="/services" class="bg-green-600 text-white py-2 px-4 rounded-full shadow-md">Retour</router-link>
+  </div>
+  <foter/>  
+</template>
+
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -47,7 +28,7 @@
             "id": 1,
             "title": "Achat de Propriétés", 
             "description": "Chez HPR COOL SARL, nous vous accompagnons dans toutes les étapes de l'achat de propriétés, que ce soit pour une résidence principale ou un investissement immobilier. Nous vous offrons un large choix de maisons, appartements, et terrains disponibles.", 
-            "link": "/servicepresentation",
+            "link": "/service/achat-proprietes",
             "detail": "Nous analysons vos besoins et votre budget afin de vous proposer les meilleures options sur le marché. Notre équipe vous accompagne dans les démarches administratives, les négociations et la finalisation de l'achat. Nous travaillons en collaboration avec des experts pour évaluer la valeur réelle des biens, vous assurant un investissement sûr et rentable."
             },
             { 
@@ -61,7 +42,7 @@
             "id": 3,
             "title": "Gestion Locative", 
             "description": "Laissez-nous gérer vos biens locatifs pour vous. Nous nous occupons de tout, de la recherche de locataires fiables à la gestion des paiements et de l'entretien de la propriété. Vous profitez d'un revenu locatif sans les tracas de la gestion quotidienne.", 
-            "link": "/servicepresentation",
+            "link": "/",
             "detail": "Nous prenons en charge l'ensemble du processus locatif : recherche et sélection de locataires, rédaction de baux, gestion des loyers, et entretien régulier des biens. Nos services incluent également la résolution des litiges éventuels, la gestion des sinistres et la maintenance des équipements, vous garantissant une tranquillité d'esprit totale."
             },
             { 
@@ -90,6 +71,10 @@
     },
     mounted() {
         // this.services = servicesData; // Charger les données JSON
+        {
+          const serviceId = this.$route.params.id; // Récupère l'ID du service dans l'URL
+          this.service = servicesData.find(s => s.id === parseInt(serviceId)); // Trouve le service correspondant
+        }
         
       // Animation sur la section des services
       gsap.from(this.$refs.servicesSection, {
@@ -120,9 +105,6 @@
       });
     },
   };
-  </script>
-  
-  <style scoped>
-  /* Ajoutez des styles spécifiques ici si nécessaire */
-  </style>
-  
+
+
+</script>

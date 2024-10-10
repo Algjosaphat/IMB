@@ -1,3 +1,5 @@
+<!-- Propriétés -->
+
 <template>
   <div>
     <Heder />

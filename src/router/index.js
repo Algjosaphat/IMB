@@ -12,6 +12,8 @@ import FormLocation from '../components/form/formlocation.vue';
 import Services from '../components/Servive/Services.vue';
 import Profil from '../components/profil/profil.vue';
 import Notifications from '../components/notifications/notifications.vue';
+import Servicepresentation from '../components/presentation/Servicepresentation.vue';
+import Propertiespresentation from '../components/presentation/Propertiespresentation.vue';
 
 
 const routes = [
@@ -69,7 +71,18 @@ const routes = [
     path: '/notifications',
     name: 'Notifications',
     component: Notifications
+  },
+  {
+    path: '/servicepresentation',
+    name: 'Servicepresentation',
+    component : Servicepresentation
+  },
+  {
+    path: '/propertiespresentation',
+    name: 'Propùertiespresentation',
+    component : Propertiespresentation
   }
+
 ];
 
 const router = createRouter({

@@ -67,6 +67,7 @@
               @change="onProfilePictureChange" 
               accept="image/*" 
               class="mt-2" 
+              
             />
           </div>
 
