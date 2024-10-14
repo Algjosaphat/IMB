@@ -6,19 +6,46 @@ IMMOBILIER/
 │
 ├── src/                 # Code source du projet
 │   ├── assets/          # Fichiers statiques (images, styles, etc.)
+│   │   └── services.json
+│   │
 │   ├── components/      # Composants Vue réutilisables
 │   │   ├── AboutMe/
 │   │   │   └── APropos.vue
 │   │   │
 │   │   ├── Connexion/
+│   │   │   ├── Signinpage.vue
 │   │   │   └── Loginpage.vue
 │   │   │
 │   │   ├── Contact/
 │   │   │   └── Contact.vue
 │   │   │
+│   │   ├── profil/
+│   │   │   └── profil.vue
+│   │   │
+│   │   ├── notifications/
+│   │   │   └── notifications.vue
+│   │   │
 │   │   ├── Helper/
 │   │   │   ├── Footer.vue
 │   │   │   └── Heaser.vue
+│   │   │
+│   │   ├── form/
+│   │   │   ├── formlocation.vue
+│   │   │   └── formvente.vue
+│   │   │
+│   │   ├── Service/
+│   │   │   └── Services.vue
+│   │   │
+│   │   ├── presentation/
+│   │   │   ├── Propertiespresentation.vue
+│   │   │   └── Servicepresentation.vue
+│   │   │
+│   │   ├── home_sections/
+│   │   │   ├── Hero.vue
+│   │   │   ├── Vedette.vue
+│   │   │   ├── Service.vue
+│   │   │   ├── Etape.vue
+│   │   │   └── Commentaire.vue
 │   │   │
 │   │   ├── Home/
 │   │   │   └── Home.vue
