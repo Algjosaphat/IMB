@@ -24,7 +24,7 @@
               :to="{ path: service.link, query: { id: service.id } }"
               class="bg-green-600 text-white py-1 px-3 rounded-full shadow-md hover:bg-green-600 transition-transform transform hover:scale-105"
             >
-              Consulté <font-awesome-icon :icon="['fas', 'eye']" />
+            En savoir plus <font-awesome-icon :icon="['fas', 'eye']" />
             </router-link>
 
           </div>

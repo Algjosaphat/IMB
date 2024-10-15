@@ -2,6 +2,7 @@
 <template>
   <div>
     <Heder />
+    <div class="p-2"></div>
     <div class="container mx-auto py-20 px-10">
       <h1 class="text-4xl font-bold text-center mb-12">Nos Propriétés</h1>
 
@@ -12,7 +13,7 @@
           <!-- Ville -->
           <div>
             <label for="city" class="block text-sm font-medium mb-1">Ville :</label>
-            <select v-model="filters.city" id="city" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-600">
+            <select v-model="filters.city" id="city" class=" border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-600">
               <option value="">Toutes</option>
               <option value="Paris">Paris</option>
               <option value="Normandie">Normandie</option>
@@ -51,12 +52,12 @@
         </div>
 
         <!-- Bouton Appliquer -->
-        <div class="flex justify-center mt-6">
+        <!-- <div class="flex justify-center mt-6">
           <button @click="applyFilters"
             class="bg-green-600 text-white py-3 px-10 rounded-full shadow-md transition-transform transform hover:scale-105 focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
             Appliquer les Filtres
           </button>
-        </div>
+        </div> -->
       </div>
 
       <!-- Liste des propriétés -->
@@ -119,16 +120,87 @@ export default {
         bathrooms: 0,
       },
       properties: [
-        // Exemple de propriétés
-        {
+      {
           image: 'https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg',
           title: 'Belle Maison à Paris',
-          description: 'Maison spacieuse avec jardin.',
+          description: 'Maison spacieuse avec jardin, située dans un quartier calme de Paris.',
           price: 750000,
           location: 'Paris',
-          features: { bedrooms: 4, bathrooms: 3, size: 150, parking: 2 },
+          features: {
+            bedrooms: 4,
+            bathrooms: 3,
+            size: 150,
+            parking: 2
+          }
         },
-        // Ajout d'autres propriétés ici
+        // Ajoute d'autres propriétés ici
+        {
+          image: 'https://media.inmobalia.com/imgV1/B98Le8~d7Me7MjCwPLJ6Ayra8IUhJ5ktnTPjoqTXEgsEG0U7f5gnGvKgfz7aB8oKA_XWwr_PYfPFkRpynsJ0kvms_koqAmhpoOHQYRswhYQFl3Ad0eZY.jpeg',
+          title: 'Maison de Campagne en Normandie',
+          description: 'Charmante maison de campagne avec grand jardin.',
+          price: 350000,
+          location: 'Normandie',
+          features: {
+            bedrooms: 5,
+            bathrooms: 4,
+            size: 200,
+            parking: 3
+          }
+        },
+        // autres propriétés...
+        {
+            image: 'https://www.architoi.com/wp-content/uploads/2022/07/ralph-ravi-kayden-mR1CIDduGLc-unsplash-1024x679.jpg',
+            title: 'Belle Maison à Paris',
+            description: 'Maison spacieuse avec jardin, située dans un quartier calme de Paris.',
+            price: '750 000 €',
+            location: '123 Rue de l\'Immobilier, Paris, France',
+            features: {
+              bedrooms: 4,
+              bathrooms: 3,
+              size: 150,
+              parking: 2
+            }
+          },
+          // Ajoute d'autres propriétés ici
+          {
+            image: 'https://media.inmobalia.com/imgV1/B98Le8~d7Me7MjCwPLJ6Ayra8IUhJ5ktnTPjoqTXEgsEG0U7f5gnGvKgfz7aB8oKA_XWwr_PYfPFkRpynsJ0kvms_koqAmhpoOHQYRswhYQFl3Ad0eZY.jpeg',
+            title: 'Maison de Campagne en Normandie',
+            description: 'Charmante maison de campagne avec grand jardin.',
+            price: '350 000 €',
+            location: '789 Route de la Campagne, Normandie, France',
+            features: {
+              bedrooms: 5,
+              bathrooms: 4,
+              size: 200,
+              parking: 3
+            }
+          },
+          {
+            image: 'https://media.inmobalia.com/imgV1/B98Le8~d7M9k3DegigWkzHXQlgzMFGqGJJp6ZRUcpX033lqadFBp2i4GGW4X3JDm~11J_coE7XMgSyFWgioo4vCKf4wUKEFeX_UhvhTBcdwUe7qaa6SBQbQU_WccjPbvVolkSJlRtoq~mxNeCJ56N0~nPZbQCHBxnpDJRyp1Ki2PlZav84Ls7w2umknXyz3NxVvvak898xmknXl35x6kCyUZwSClwshZMjNzImMS~u1uo0u5ItVWEIHcJh2aNofxG3ynfGyGmG25dFhKUG78yyYiN8bkFWWd7Gzt9WDEP0HGyJH3cEKKjRMkF5H0CWgnct_bVu2OKllkfo4esmAB7bCOC4khdaMZb5fGFovg~gRrYPR7RF~tSw--.jpg',
+            title: 'Loft à Marseille',
+            description: 'Loft spacieux avec terrasse ensoleillée.',
+            price: '650 000 €',
+            location: '321 Boulevard de la Liberté, Marseille, France',
+            features: {
+              bedrooms: 2,
+              bathrooms: 1,
+              size: 110,
+              parking: 1
+            }
+          },
+          {
+            image: 'https://media.inmobalia.com/imgV1/B98Le8~d7M9k3DegigWkzHXQlgzMFGqGJJp6ZRUcpX033lqadFBp2i4GGW4X3JDm~11J_coE7XMgSyFWgioo4vCKf4wUKEFeX_UhvhTBcdwUe7qaaDjhAkSq_Oheh5LS7WNXTbRbOeK86Iw3lFoRPiD_ir_RXo8Oy_owz931viJ8c1na8rofaCpqJW31wCIKu77lqu800MHZJ4ky_xspXzxXaLS8IEeYGQOgiB0uV8t9oFVwtxSHxI2RFx6s0Jd8wn_NNm9wQ9GORcHci19Uf3KVebuhUOvjbOsMuKJwLkZgVTcfpRtjobwm5y8wMbYI90onEtqhBKejsHXTwucE~bsEivj1c5jbJBus1ZzvutsoGSwFfTBvgg--.jpg',
+            title: 'Villa au Bord de Mer',
+            description: 'Villa luxueuse avec accès direct à la plage.',
+            price: '1 200 000 €',
+            location: '654 Plage du Soleil, Côte d\'Azur, France',
+            features: {
+              bedrooms: 6,
+              bathrooms: 5,
+              size: 300,
+              parking: 4
+            }
+          },
       ],
     };
   },

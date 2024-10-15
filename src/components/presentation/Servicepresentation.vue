@@ -12,7 +12,7 @@
       to="/services"
       class="bg-green-600 text-white py-2 px-4 rounded-full shadow-md"
     >
-      Retour (ID : {{ id }})
+      <font-awesome-icon :icon="['fas', 'arrow-left']" /> Retour <!-- (ID : {{ id }}) -->
     </router-link>
   </div>
   <foter />
