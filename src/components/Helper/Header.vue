@@ -1,7 +1,7 @@
 <!-- Header.vue -->
 
 <template>
-  <header class="shadow-2xl fixed w-full top-5 rounded-full left-0 z-50  bg-white">
+  <header class="shadow-2xl fixed w-full top-5 lg:rounded-full left-0 z-50  bg-white">
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
       <!-- Logo -->
       <div class="text-2xl font-bold flex items-center gap-2">
