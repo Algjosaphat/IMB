@@ -1,8 +1,6 @@
-<!-- Footer.vue -->
-
 <template>
   <!-- Footer -->
-  <footer class="bg-green-700 text-white py-12">
+  <footer class="bg-green-700 text-white py-12" ref="footerRef">
     <div class="container mx-auto text-center">
       <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-8 border-b pb-3">
         
@@ -21,8 +19,7 @@
           <a href="#" class="text-white hover:text-gray-400">Achat de Propriétés</a>
           <a href="/formvente" class="text-white hover:text-gray-400">Vente de Propriétés</a>
           <a href="/formlocation" class="text-white hover:text-gray-400">Gestion Locative</a>
-          <a href="#" class="text-white hover:text-gray-400">Construstion / Rénovation</a>
-          <!-- <a href="#" class="text-white hover:text-gray-400">Suivi / Evaluation des chantiers</a> -->
+          <a href="#" class="text-white hover:text-gray-400">Construction / Rénovation</a>
           <a href="#" class="text-white hover:text-gray-400">Service d'entretien</a>
         </div>
 
@@ -31,7 +28,7 @@
           <h4 class="text-lg font-semibold">Contactez-Nous</h4>
           <p>Ville: Godomey Salamey</p>
           <p>Téléphone: (+229) 98 88 98 60 / 66 23 73 68</p>
-          <p>Email: hprcoop@gmail.com </p>
+          <p>Email: hprcoop@gmail.com</p>
         </div>
 
         <!-- Réseaux sociaux -->
@@ -53,13 +50,37 @@
       </div>
       
       <p class="text-lg mt-4">© 2024 Votre Agence Immobilière. Tous droits réservés.</p>
-      <!-- <br> -->
     </div>
   </footer>
 </template>
 
 <script setup>
-// Importation de FontAwesomeIcon n'est pas nécessaire ici car il est enregistré globalement dans main.js
+import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
+
+const footerRef = ref(null);
+
+onMounted(() => {
+  // Animation du footer
+  gsap.from(footerRef.value, {
+    duration: 1.5,
+    opacity: 0,
+    y: 20,
+    ease: 'power3.out',
+  });
+
+  // Animation des éléments à l'intérieur du footer
+  const links = footerRef.value.querySelectorAll('h4, a, p');
+  links.forEach((link, index) => {
+    gsap.from(link, {
+      duration: 0.5,
+      opacity: 0,
+      y: 10,
+      delay: index * 0.1,
+      ease: 'power2.out',
+    });
+  });
+});
 </script>
 
 <style scoped>

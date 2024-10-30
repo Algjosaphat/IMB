@@ -13,7 +13,8 @@ import Services from '../components/Servive/Services.vue';
 import Profil from '../components/profil/profil.vue';
 import Notifications from '../components/notifications/notifications.vue';
 import Servicepresentation from '../components/presentation/Servicepresentation.vue';
-import Propertiespresentation from '../components/presentation/Propertiespresentation.vue';
+// import Propertiespresentation from '../components/presentation/Propertiespresentation.vue';
+import PropertyDetail from '../components/presentation/Propertiespresentation.vue';
 
 
 const routes = [
@@ -77,11 +78,17 @@ const routes = [
     name: 'Servicepresentation',
     component : Servicepresentation
   },
-  {
-    path: '/propertiespresentation',
-    name: 'Propùertiespresentation',
-    component : Propertiespresentation
-  }
+  // {
+  //   path: '/propertiespresentation',
+  //   name: 'Propertiespresentation',
+  //   component : Propertiespresentation
+  // },
+  { 
+    path: '/articles/:id', 
+    name: 'PropertyDetail', 
+    component: PropertyDetail, 
+    props: true 
+  },
 
 ];
 
