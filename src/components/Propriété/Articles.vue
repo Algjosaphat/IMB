@@ -88,17 +88,17 @@
             </div>
             <div class="flex justify-center mt-4">
               <router-link :to="{ name: 'PropertyDetail', params: { id: property.id } }">
-              <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform hover:scale-105">
-                Voir Détails
-              </button>
-            </router-link>
+                <button class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform hover:scale-105">
+                  Voir Détails
+                </button>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <Foter />
   </div>
+  <Foter />
 </template>
 
 <script>
