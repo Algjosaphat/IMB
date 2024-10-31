@@ -1,6 +1,6 @@
 <template>
+  <Heder />
   <div class="min-h-screen bg-gradient-to-br from-white via-gray-100 to-gray-200 py-10">
-    <Heder />
 
     <div
       ref="propertyCard"
@@ -44,7 +44,7 @@
       <div class="flex justify-between mt-8">
         <router-link to="/properties">
           <button
-            class="bg-green-500 text-white font-semibold py-3 px-12 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105"
+            class="hidden md:block bg-green-500 text-white font-semibold py-3 px-12 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105"
           >
             Retour aux Propriétés
           </button>
