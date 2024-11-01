@@ -20,6 +20,8 @@ import PropertyDetail from '../components/presentation/Propertiespresentation.vu
 import AdminDashboard from '../components/views/AdminDashboard.vue';
 import UserList from '../components/Admin/UserList.vue';
 import PropertyList from '../components/Admin/PropertyList.vue';
+import AddProperty from '../components/Admin/AddProperty.vue';
+import Statistics from '../components/Admin/Statistics.vue';
 
 
 const routes = [
@@ -95,12 +97,6 @@ const routes = [
     props: true 
   },
   // Côté admin,
-  // {
-  //   path: '/admin',
-  //   name: 'AdminDashboard',
-  //   component: AdminDashboard,
-  //   meta: { requiresAuth: true },
-  // },
   {
     path: '/admin',
     component: AdminDashboard,
@@ -109,6 +105,18 @@ const routes = [
         { path: 'properties', component: PropertyList },
     ],
     meta: { requiresAuth: true },
+  },
+  {
+    path: '/addproperty',
+    name: 'AddProperty',
+    component: AddProperty,
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/statistics',
+    name: 'Statistics',
+    component: Statistics,
+    // meta: { requiresAuth: true },
   },
 
 ];
