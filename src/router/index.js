@@ -16,6 +16,11 @@ import Servicepresentation from '../components/presentation/Servicepresentation.
 // import Propertiespresentation from '../components/presentation/Propertiespresentation.vue';
 import PropertyDetail from '../components/presentation/Propertiespresentation.vue';
 
+// Côté admin
+import AdminDashboard from '../components/views/AdminDashboard.vue';
+import UserList from '../components/Admin/UserList.vue';
+import PropertyList from '../components/Admin/PropertyList.vue';
+
 
 const routes = [
   {
@@ -82,12 +87,28 @@ const routes = [
   //   path: '/propertiespresentation',
   //   name: 'Propertiespresentation',
   //   component : Propertiespresentation
-  // },
+  // }, 
   { 
     path: '/articles/:id', 
     name: 'PropertyDetail', 
     component: PropertyDetail, 
     props: true 
+  },
+  // Côté admin,
+  // {
+  //   path: '/admin',
+  //   name: 'AdminDashboard',
+  //   component: AdminDashboard,
+  //   meta: { requiresAuth: true },
+  // },
+  {
+    path: '/admin',
+    component: AdminDashboard,
+    children: [
+        { path: 'users', component: UserList },
+        { path: 'properties', component: PropertyList },
+    ],
+    meta: { requiresAuth: true },
   },
 
 ];
@@ -96,5 +117,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 });
+
+// Ajouter une vérification pour restreindre l'accès aux routes admin
+// router.beforeEach((to, from, next) => {
+//   const isAuthenticated = /* insérer la logique d'authentification ici */;
+//   if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
+//       next({ name: 'Loginpage' }); // Redirige vers la page de connexion
+//   } else {
+//       next();
+//   }
+// });
 
 export default router;
