@@ -4,7 +4,7 @@
       <div class="container mx-auto flex items-center justify-between m-2">
         <!-- Logo pour l'interface admin -->
         <div class="text-2xl font-bold flex items-center gap-2">
-          <router-link to="/admin" class="">
+          <router-link to="/" class="">
             <img :src="currentLogo" alt="Admin Logo" class="rounded-full" width="50" height="40" />
           </router-link>
           <span class="text-xl font-semibold">Admin Dashboard</span>
