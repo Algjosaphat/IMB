@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto px-4 mt-10">
-    <h1 class="text-center text-2xl font-bold text-green-600 mb-6">Liste des Propriétés</h1>
+    <h1 class="text-3xl text-green-600 font-bold text-center mb-8">Liste des Propriétés</h1>
     <div class="overflow-x-auto shadow-lg rounded-lg overflow-y-auto">
       <table class="min-w-full bg-white">
         <thead>
@@ -10,7 +10,7 @@
             <th class="py-3 px-4 text-left">Actions</th>
           </tr>
         </thead>
-        <tbody class="text-gray-600 text-xs lg:text-sm font-light">
+        <tbody class="border-t hover:bg-gray-100 transition">
           <tr v-for="property in properties" :key="property.id" class="border-b border-gray-200 hover:bg-gray-100">
             <td class="py-3 px-4 text-left">{{ property.id }}</td>
             <td class="py-3 px-4 text-left">{{ property.title }}</td>

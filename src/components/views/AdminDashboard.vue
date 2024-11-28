@@ -1,6 +1,10 @@
 <template>
     <div class="admin-dashboard">
       <AdminHeader />
+      <!-- <div class="admin-Da">
+        <AdminSidebar />
+        <router-view />
+      </div> -->
       <div class="admin-main">
         <AdminSidebar />
         <router-view />

@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto px-4 mt-10">
-    <h1 class="text-center text-2xl font-bold text-green-600 mb-6">Liste des Utilisateurs</h1>
+    <h1 class="text-3xl text-green-600 font-bold text-center mb-8">Liste des Utilisateurs</h1>
     <div class="overflow-x-auto overflow-y-auto max-h-screen shadow-lg rounded-lg">
       <table class="min-w-full bg-white">
         <thead>
@@ -12,7 +12,7 @@
             <th class="py-3 px-4 text-left">Notification</th>
           </tr>
         </thead>
-        <tbody class="text-gray-600 text-xs lg:text-sm font-light">
+        <tbody class="border-t hover:bg-gray-100 transition">
           <tr v-for="user in users" :key="user.id" class="border-b border-gray-200 hover:bg-gray-100">
             <td class="py-3 px-4 text-left">{{ user.id }}</td>
             <td class="py-3 px-4 text-left">{{ user.name }}</td>

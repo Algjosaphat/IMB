@@ -39,8 +39,8 @@
   
             <!-- Menu déroulant pour l'utilisateur -->
             <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
-              <router-link to="/admin/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
-              <router-link to="/admin/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Paramètres</router-link>
+              <router-link to="profil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
+              <!-- <router-link to="/admin/settings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Paramètres</router-link> -->
               <button @click="logout" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
                 Déconnexion
                 <router-link to="/"></router-link>
@@ -86,7 +86,7 @@
   
   // Liens de navigation pour l'interface admin
   const adminLinks = [
-    { name: 'Tableau de Bord', to: '/admin', clickHandler: closeMenu },
+    { name: 'Tableau de Bord', to: '/admin/Defaut', clickHandler: closeMenu },
     { name: 'Utilisateurs', to: '/admin/users', clickHandler: closeMenu },
     { name: 'Ajout de Propriétés', to: '/AddProperty', clickHandler: closeMenu },
     { name: 'Statistiques', to: '/Statistics', clickHandler: closeMenu },

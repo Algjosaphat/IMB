@@ -7,6 +7,7 @@ import Propriété from '../components/Propriété/Articles.vue';
 import APropos from '../components/AboutMe/APropos.vue';
 import Loginpage from '../components/Connexion/Loginpage.vue';
 import Signinpage from '../components/Connexion/Signinpage.vue';
+import FormAchat from '../components/form/formachat.vue';
 import FormVente from '../components/form/formvente.vue';
 import FormLocation from '../components/form/formlocation.vue';
 import Services from '../components/Servive/Services.vue';
@@ -18,6 +19,7 @@ import PropertyDetail from '../components/presentation/Propertiespresentation.vu
 
 // Côté admin
 import AdminDashboard from '../components/views/AdminDashboard.vue';
+import Defaut from '../components/Admin/Defaut.vue';
 import UserList from '../components/Admin/UserList.vue';
 import PropertyList from '../components/Admin/PropertyList.vue';
 import AddProperty from '../components/Admin/AddProperty.vue';
@@ -54,6 +56,11 @@ const routes = [
     path: '/signin',
     name: 'Signinpage',
     component: Signinpage
+  },
+  {
+    path: '/formachat',
+    name: 'FormAchat',
+    component: FormAchat
   },
   {
     path: '/formvente',
@@ -101,6 +108,7 @@ const routes = [
     path: '/admin',
     component: AdminDashboard,
     children: [
+        { path:  'Defaut', component: Defaut},
         { path: 'users', component: UserList },
         { path: 'properties', component: PropertyList },
     ],

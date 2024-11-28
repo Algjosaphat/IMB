@@ -12,7 +12,7 @@
         />
       </div>
 
-      <div class="flex flex-col items-center step" ref="step2">
+      <div class="flex flex-col items-center md:ps-24 xl:ps-28 step" ref="step2">
         <span class="text-xl md:text-2xl font-semibold mb-4">Contactez-Nous</span>
         <font-awesome-icon 
           :icon="['fas', 'phone']" 
@@ -23,7 +23,7 @@
       </div>
 
       <div class="flex flex-col items-center step" ref="step3">
-        <span class="text-xl md:text-2xl font-semibold mb-4">Procedons aux demarches</span>
+        <span class="text-xl md:text-2xl font-semibold mb-4 md:w-2/3 text-center">Procedons aux demarches</span>
         <font-awesome-icon 
           :icon="['fas', 'wand-magic-sparkles']" 
           size="lg" 

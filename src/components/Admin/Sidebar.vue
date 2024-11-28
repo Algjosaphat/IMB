@@ -12,10 +12,11 @@
     <aside :class="{ '-translate-x-full': !isSidebarOpen, 'translate-x-0': isSidebarOpen }"
            class="sidebar fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-30">
       <!-- Bouton de fermeture -->
-      <button @click="toggleSidebar" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 focus:outline-none">X</button>
+      <button @click="toggleSidebar" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 focus:outline-none"></button>
       
       <nav class="mt-20">
         <ul>
+          <li><router-link to="/admin/Defaut" @click.native="toggleSidebar" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Tableau de Bord</router-link></li>
           <li><router-link to="/admin/users" @click.native="toggleSidebar" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Gestion des Utilisateurs</router-link></li>
           <li><router-link to="/admin/properties" @click.native="toggleSidebar" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Gestion des Propriétés</router-link></li>
         </ul>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
