@@ -1,211 +1,207 @@
 <template>
-  <div class="admin-dashboard">
-    <AdminHeader/>
-    <div class="add-property-container">
-      <h2>Ajouter une Nouvelle Propriété</h2>
-      
-      <form @submit.prevent="handleSubmit" class="property-form">
-        <div class="form-group">
-          <label for="title">Titre</label>
-          <input type="text" id="title" v-model="form.title" placeholder="Entrez le titre de la propriété" required />
+  <AdminHeader/>
+  <div class="min-h-screen bg-gray-100 flex flex-col items-center py-10">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
+      <h1 class="text-3xl font-bold text-center mb-6 text-green-700">Ajouter une Nouvelle Propriété</h1>
+
+      <form @submit.prevent="addProperty" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+          <input
+            v-model="newProperty.title"
+            type="text"
+            id="title"
+            placeholder="Entrez le titre de la propriété"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+            required
+          />
         </div>
 
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" v-model="form.description" placeholder="Décrivez la propriété" required></textarea>
+        <div>
+          <label for="price" class="block text-sm font-medium text-gray-700">Prix (€)</label>
+          <input
+            v-model.number="newProperty.price"
+            type="number"
+            id="price"
+            placeholder="Entrez le prix"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+            required
+          />
         </div>
 
-        <div class="form-group">
-          <label for="price">Prix (€)</label>
-          <input type="number" id="price" v-model="form.price" placeholder="Ex : 750000" required />
+        <div>
+          <label for="location" class="block text-sm font-medium text-gray-700">Emplacement</label>
+          <input
+            v-model="newProperty.location"
+            type="text"
+            id="location"
+            placeholder="Entrez l'emplacement"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+            required
+          />
         </div>
 
-        <div class="form-group">
-          <label for="location">Emplacement</label>
-          <input type="text" id="location" v-model="form.location" placeholder="Ex : Paris" required />
+        <div>
+          <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+          <input
+            @change="onImageSelected"
+            type="file"
+            id="image"
+            accept="image/*"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+          />
         </div>
 
-        <div class="form-group">
-          <label for="storey">Nombre d'étages</label>
-          <input type="number" id="storey" v-model="form.storey" placeholder="Ex : 2" required />
+        <div class="md:col-span-2">
+          <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            v-model="newProperty.description"
+            id="description"
+            rows="4"
+            placeholder="Décrivez la propriété"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+            required
+          ></textarea>
         </div>
 
-        <div class="form-group">
-          <h3>Caractéristiques</h3>
-          <div class="features-group">
-            <div class="feature-item">
-              <label for="bedrooms">Chambres</label>
-              <input type="number" id="bedrooms" v-model="form.features.bedrooms" placeholder="Ex : 4" required />
+        <div>
+          <label for="storey" class="block text-sm font-medium text-gray-700">Nombre d'étages</label>
+          <input
+            v-model.number="newProperty.storey"
+            type="number"
+            id="storey"
+            placeholder="Nombre d'étages"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+          />
+        </div>
+
+        <div>
+          <label for="features" class="block text-sm font-medium text-gray-700">Caractéristiques</label>
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label for="bedrooms" class="block text-xs font-medium text-gray-600">Chambres</label>
+              <input
+                v-model.number="newProperty.features.bedrooms"
+                type="number"
+                id="bedrooms"
+                placeholder="Chambres"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+              />
             </div>
-
-            <div class="feature-item">
-              <label for="bathrooms">Salles de bain</label>
-              <input type="number" id="bathrooms" v-model="form.features.bathrooms" placeholder="Ex : 3" required />
+            <div>
+              <label for="bathrooms" class="block text-xs font-medium text-gray-600">Salles de bain</label>
+              <input
+                v-model.number="newProperty.features.bathrooms"
+                type="number"
+                id="bathrooms"
+                placeholder="Salles de bain"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+              />
             </div>
-
-            <div class="feature-item">
-              <label for="size">Surface (m²)</label>
-              <input type="number" id="size" v-model="form.features.size" placeholder="Ex : 150" required />
-            </div>
-
-            <div class="feature-item">
-              <label for="parking">Places de parking</label>
-              <input type="number" id="parking" v-model="form.features.parking" placeholder="Ex : 2" required />
+            <div>
+              <label for="size" class="block text-xs font-medium text-gray-600">Surface (m²)</label>
+              <input
+                v-model.number="newProperty.features.size"
+                type="number"
+                id="size"
+                placeholder="Surface (m²)"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500"
+              />
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="image">URL de l'image</label>
-          <input type="url" id="image" v-model="form.image" placeholder="Ex : https://example.com/image.jpg" required />
+        <div>
+          <label for="isFeatured" class="block text-sm font-medium text-gray-700">Propriété Vedette</label>
+          <div class="flex items-center space-x-4 mt-1">
+            <input
+              v-model="newProperty.isFeatured"
+              type="checkbox"
+              id="isFeatured"
+              class="h-5 w-5 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+            />
+            <span class="text-sm text-gray-600">Marquer cette propriété comme vedette</span>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            <strong>Statut actuel :</strong> {{ newProperty.isFeatured ? 'Oui' : 'Non' }}
+          </p>
         </div>
 
-        <div class="form-group featured-checkbox">
-          <label for="featured">Propriété en vedette</label>
-          <input type="checkbox" id="featured" v-model="form.featured" />
-        </div>
 
-        <button type="submit" class="submit-button">Ajouter la Propriété</button>
+        <div class="md:col-span-2">
+          <button
+            type="submit"
+            class="w-full bg-green-600 text-white rounded-md py-2 font-semibold hover:bg-green-700 shadow-lg"
+          >
+            Ajouter la Propriété
+          </button>
+        </div>
       </form>
+
+      <div v-if="showPreview" class="mt-8 p-4 bg-gray-50 border rounded-md">
+        <h3 class="text-xl font-semibold mb-4">Prévisualisation :</h3>
+        <p><strong>Titre :</strong> {{ newProperty.title }}</p>
+        <p><strong>Prix :</strong> {{ newProperty.price }} €</p>
+        <p><strong>Emplacement :</strong> {{ newProperty.location }}</p>
+        <p><strong>Description :</strong> {{ newProperty.description }}</p>
+        <p><strong>Vedette :</strong> {{ newProperty.isFeatured ? 'Oui' : 'Non' }}</p>
+        <img
+          v-if="previewImage"
+          :src="previewImage"
+          alt="Prévisualisation de l'image"
+          class="mt-4 rounded-md max-w-full"
+        />
+      </div>
     </div>
   </div>
-  <!-- <div class="py-6"></div>
-  <div class="py-6"></div> -->
 </template>
-  
+
 <script>
-  import AdminHeader from '../Admin/Header.vue';
-  
-  export default {
-    components: {
-      AdminHeader,
-    },
-    data() {
-      return {
-        form: {
-          title: '',
-          description: '',
-          price: null,
-          location: '',
-          storey: null,
-          features: {
-            bedrooms: null,
-            bathrooms: null,
-            size: null,
-            parking: null,
-          },
-          image: '',
-          featured: false,
+import AdminHeader from '../Admin/Header.vue';
+
+export default {
+  components: {
+    AdminHeader,
+  },
+  data() {
+    return {
+      newProperty: {
+        title: "",
+        price: 0,
+        location: "",
+        image: "",
+        description: "",
+        storey: 0,
+        features: {
+          bedrooms: 0,
+          bathrooms: 0,
+          size: 0,
         },
-      };
-    },
-    methods: {
-      handleSubmit() {
-        // Logique pour l'envoi des données du formulaire
-        console.log("Propriété ajoutée:", this.form);
-        alert("La propriété a été ajoutée avec succès !");
-        this.resetForm();
+        isFeatured: false,
       },
-      resetForm() {
-        this.form = {
-          title: '',
-          description: '',
-          price: null,
-          location: '',
-          storey: null,
-          features: {
-            bedrooms: null,
-            bathrooms: null,
-            size: null,
-            parking: null,
-          },
-          image: '',
-          featured: false,
-        };
-      },
+      previewImage: "",
+      showPreview: false,
+    };
+  },
+  methods: {
+    onImageSelected(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.previewImage = URL.createObjectURL(file);
+        this.newProperty.image = file;
+      }
     },
-  };
+    addProperty() {
+      console.log("Propriété ajoutée", this.newProperty);
+      alert("Propriété ajoutée avec succès !");
+      this.showPreview = true;
+    },
+  },
+};
 </script>
-  
+
 <style scoped>
-  .add-property-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #15763A;
-  }
-  
-  .property-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-    color: #1F1F1F;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .features-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .feature-item {
-    flex: 1 1 calc(50% - 10px);
-  }
-  
-  .feature-item label {
-    font-weight: normal;
-    color: #1F1F1F;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background-color: #15763A;
-    color: #ffffff;
-    font-size: 18px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-button:hover {
-    background-color: #0e5a27;
-  }
-  
-  .featured-checkbox {
-    display: flex;
-    align-items: center;
-  }
-  
-  .featured-checkbox label {
-    margin-right: 10px;
-  }
+body {
+  font-family: Arial, sans-serif;
+}
 </style>
-  
