@@ -4,7 +4,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-70"></div>
     
     <!-- Contenu principal -->
-    <div class="relative z-10 container mt-16 mx-auto px-4">
+    <div class="relative z-10 container mt-20 mx-auto px-4">
       <div class="max-w-3xl bg-black bg-opacity-40 backdrop-blur-sm p-8 md:p-12 rounded-xl border-l-4 border-green-500 shadow-2xl transform transition-all duration-300 hover:shadow-green-500/30">
         <div class="flex flex-col items-start text-left">
           <!-- Logo ou badge d'entreprise -->
