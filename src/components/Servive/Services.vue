@@ -6,7 +6,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-green-900 via-green-800 to-green-700 opacity-90"></div>
     <div class="absolute inset-0 bg-[url('/api/placeholder/1200/800')] bg-cover bg-center opacity-20"></div>
     <div class="absolute inset-0 flex items-center justify-center">
-      <div class="text-center px-4">
+      <div class="text-center px-4 mt-20">
         <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-2 tracking-tight">Nos Services</h1>
         <div class="w-24 h-1 bg-green-400 mx-auto mb-4"></div>
         <p class="text-green-100 text-lg md:text-xl max-w-2xl mx-auto">Solutions innovantes pour transformer vos idées en succès</p>
@@ -50,13 +50,13 @@
         class="group rounded-xl overflow-hidden bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1"
       >
         <!-- Image du service -->
-        <div class="relative h-56 overflow-hidden">
+        <!-- <div class="relative h-56 overflow-hidden">
           <div class="absolute inset-0 bg-[url('/api/placeholder/800/600')] bg-cover bg-center transform group-hover:scale-110 transition-transform duration-700"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
           <div class="absolute bottom-0 left-0 p-6">
             <span class="bg-green-600 text-white text-xs uppercase font-semibold py-1 px-3 rounded-full">Service {{ index + 1 }}</span>
           </div>
-        </div>
+        </div> -->
         
         <!-- Contenu du service -->
         <div class="p-6">
