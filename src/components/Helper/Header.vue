@@ -2,7 +2,7 @@
   <header class="shadow-2xl fixed w-full sm:top-5 sm:rounded-full left-0 z-50 bg-white">
     <div class="container mx-auto flex items-center justify-between m-2">
       <!-- Affichage du logo sur tous les écrans avec ajustements -->
-      <div class="text-2xl font-bold flex items-center gap-2">
+      <div class="text-2xl font-bold flex lg:ml-8 items-center gap-2">
         <!-- Logo pour desktop -->
         <router-link to="/" class="">
           <img :src="currentLogo" alt="Logo" class="rounded-full" width="50" height="40" />
@@ -26,7 +26,7 @@
 
 
       <!-- Menu utilisateur ou connexion -->
-      <div class="hidden md:flex items-center relative" v-if="userLoggedIn">
+      <div class="hidden md:flex items-center lg:mr-8 relative" v-if="userLoggedIn">
         <div>
           <button @click="toggleDropdown" class="flex items-center focus:outline-none">
             <span class="mr-2 text-black">
@@ -41,7 +41,7 @@
           <div v-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20">
             <router-link to="/profil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</router-link>
             <router-link to="/notifications" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</router-link>
-            <router-link to="/admin/Defaut" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Interface Admin</router-link>
+            <!-- <router-link to="/admin/Defaut" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Interface Admin</router-link> -->
             <button @click="logout" to="/" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
               Déconnexion
               <router-link to="/"></router-link>
@@ -51,7 +51,7 @@
       </div>
 
       <!-- Bouton de connexion pour grand écran -->
-      <div class="hidden lg:flex" v-if="!userLoggedIn">
+      <div class="hidden lg:flex lg:mr-8" v-if="!userLoggedIn">
         <router-link to="/login" class="bg-green-600 text-white py-2 px-10 rounded-full shadow-md transition-transform transform hover:scale-105">
           Se Connecter <font-awesome-icon :icon="['fas', 'user']" />
         </router-link>
