@@ -131,7 +131,8 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior: () => ({ top: 0 })
 });
 
 // Ajouter une vérification pour restreindre l'accès aux routes admin
