@@ -78,7 +78,7 @@
               </div>
               
               <!-- Button -->
-              <div class="mt-6">
+              <div class="lg:mt-6">
                 <router-link to="/formachat" class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                   En savoir plus
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -150,7 +150,7 @@
               </div>
               
               <!-- Button -->
-              <div class="mt-6">
+              <div class="lg:mt-6">
                 <router-link to="/formvente" class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -222,7 +222,7 @@
               </div>
               
               <!-- Button -->
-              <div class="mt-6">
+              <div class="lg:mt-6">
                 <router-link to="/formlocation" class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                   En savoir plus
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
