@@ -320,7 +320,7 @@
               class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col"
             >
               <div class="relative">
-                <img :src="property.image" :alt="property.title" class="w-full h-64 object-cover" />
+                <img :src="property.image1" :alt="property.title" class="w-full h-64 object-cover" />
                 
                 <!-- Badge pour le type de propriété -->
                 <div class="absolute top-4 left-4">

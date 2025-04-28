@@ -5,6 +5,8 @@ import { ref } from 'vue';
 import Heder from '../Helper/Header.vue';
 import Foter from '../Helper/Footer.vue';
 import imageDG from '../../assets/images/DG.svg'
+import imageCI from '../../assets/images/CI.svg'
+import imageRGL from '../../assets/images/RGL.svg'
 
 // Données dynamiques pour la section équipe
 const equipe = ref([
@@ -20,14 +22,14 @@ const equipe = ref([
     nom: "Yokébèd Allagbe",
     poste: "Conseillère Immobilière",
     description: "Marie est spécialisée dans la vente de propriétés résidentielles. Elle est passionnée par aider ses clients à trouver leur maison idéale et a une connaissance approfondie du marché local.",
-    image: imageDG
+    image: imageCI
   },
   {
     id: 3,
     nom: "Paul Lefevre",
     poste: "Responsable de la Gestion Locative",
     description: "Paul s'occupe de la gestion des propriétés locatives. Il veille à ce que les propriétaires et les locataires bénéficient d'une gestion efficace et sans souci.",
-    image: imageDG
+    image: imageRGL
   }
 ]);
 
