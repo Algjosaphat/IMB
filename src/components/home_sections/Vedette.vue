@@ -29,7 +29,7 @@
           <!-- Image avec overlay au hover -->
           <div class="relative h-72 overflow-hidden">
             <img 
-              :src="property.image" 
+              :src="property.image1" 
               :alt="property.title" 
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
